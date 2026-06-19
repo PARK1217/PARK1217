@@ -130,7 +130,7 @@ motto:   "기술은 도구일 뿐, 결국 사용자가 쓰는 것을 만든다."
 
 `Python` `Streamlit`
 
-**[🌐 라이브 데모](https://mini-project-beta-peach.vercel.app)** · **[→ 저장소](https://github.com/PARK1217/mini_project)**
+**[→ 저장소 보기](https://github.com/PARK1217/mini_project)**
 
 </td>
 <td width="50%" valign="top">
