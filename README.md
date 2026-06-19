@@ -58,6 +58,7 @@ motto:   "기술은 도구일 뿐, 결국 사용자가 쓰는 것을 만든다."
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vue.js&logoColor=white)
+![Vuetify](https://img.shields.io/badge/Vuetify-1867C0?style=flat-square&logo=vuetify&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)
 
@@ -134,12 +135,18 @@ motto:   "기술은 도구일 뿐, 결국 사용자가 쓰는 것을 만든다."
 </td>
 <td width="50%" valign="top">
 
-### 🌱 More to come
-> 꾸준히 만들고 배포합니다.
+### 🛰️ Interface Hub
+> 시스템 연동(인터페이스) **실시간 모니터링 플랫폼**
 
-진행 중인 프로젝트와 실험들이 곧 이곳에 추가됩니다.
+토폴로지 · 호출 로그 · 장애 · SLA를 한 화면에서 관제하는 운영 대시보드.
 
-<br /><br /><br /><br />
+- 🔔 WebSocket 실시간 장애 탐지·알림
+- 🤖 AI 분석 · 자동 복구(Retry) 분석
+- 🔐 역할 기반 접근제어 (Admin/Operator/Auditor) · 감사 로그
+
+`Vue 3` `TypeScript` `Vuetify` `Pinia` `ApexCharts` `WebSocket`
+
+**[🌐 라이브 서비스](https://interface-hub.chobihome.site/)**
 
 </td>
 </tr>
