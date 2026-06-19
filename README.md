@@ -21,17 +21,19 @@
 ## 👋 About Me
 
 ```yaml
-name:    Susan (PARK1217)
-role:    AI Engineer & Full-Stack Developer
-focus:   [ RAG, LLM Applications, Full-Stack Web, MLOps/Observability ]
-loves:   문제를 끝까지 파고들어 "동작하는 제품"으로 완성하는 것
-motto:   "기술은 도구일 뿐, 결국 사용자가 쓰는 것을 만든다."
+name:        Susan (PARK1217)
+role:        AI Engineer & Backend Developer
+experience:  금융·헬스케어 백엔드 3년+ → AI/RAG·LLM 전문화
+focus:       [ RAG, LLM Applications, MCP/Agent, Backend, MLOps/Observability ]
+loves:       문제를 끝까지 파고들어 "동작하는 제품"으로 완성하는 것
+motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만든다."
 ```
 
-- 🤖 **RAG · LLM** 기반 서비스를 설계부터 배포까지 직접 구현합니다.
-- 🧩 **백엔드(FastAPI)부터 프론트(Next.js · Vue)까지** 풀스택으로 작업합니다.
+- 🏦 **금융·헬스케어 도메인 백엔드 3년+** — 외부기관 API 연동, 트랜잭션 복구, 클라우드 무중단 마이그레이션을 실무에서 단독 수행했습니다.
+- 🤖 **RAG · LLM · MCP/Agent** 기반 서비스를 설계부터 배포까지 직접 구현합니다.
+- 🧩 **백엔드(FastAPI · Spring)부터 프론트(Next.js · Vue)까지** 풀스택으로 작업합니다.
 - 📊 **관측성(Prometheus · Grafana · Loki · Tempo)** 으로 모델·서비스 성능을 데이터로 검증합니다.
-- 🚀 작은 실습부터 풀스택 제품까지, 직접 만들고 배포한 결과물로 말합니다.
+- 🚀 작은 실습부터 운영 중인 풀스택 제품까지, 직접 만들고 배포한 결과물로 말합니다.
 
 <br />
 
@@ -42,16 +44,37 @@ motto:   "기술은 도구일 뿐, 결국 사용자가 쓰는 것을 만든다."
 **Languages**
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
-**AI / ML**
+**AI / ML / LLM**
 
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
+![LiteLLM](https://img.shields.io/badge/LiteLLM-6E56CF?style=flat-square&logoColor=white)
+![RAG](https://img.shields.io/badge/RAG-4B8BBE?style=flat-square&logoColor=white)
+![MCP](https://img.shields.io/badge/MCP-000000?style=flat-square&logoColor=white)
+![LLM APIs](https://img.shields.io/badge/LLM%20APIs%20(OpenAI·Groq·Mistral)-412991?style=flat-square&logo=openai&logoColor=white)
+![pgvector](https://img.shields.io/badge/pgvector-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 ![FAISS](https://img.shields.io/badge/FAISS-0467DF?style=flat-square&logo=meta&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-337AB7?style=flat-square&logoColor=white)
-![OpenAI](https://img.shields.io/badge/LLM%20APIs-412991?style=flat-square&logo=openai&logoColor=white)
+
+**Backend**
+
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white)
+![Spring](https://img.shields.io/badge/Spring%20(Legacy)-6DB33F?style=flat-square&logo=spring&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
+![JPA](https://img.shields.io/badge/JPA%2FHibernate-59666C?style=flat-square&logo=hibernate&logoColor=white)
+
+**Database**
+
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=oracle&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
 
 **Frontend**
 
@@ -62,18 +85,18 @@ motto:   "기술은 도구일 뿐, 결국 사용자가 쓰는 것을 만든다."
 ![TailwindCSS](https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)
 
-**Backend & Data**
-
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![Apache Kafka](https://img.shields.io/badge/Kafka-231F20?style=flat-square&logo=apachekafka&logoColor=white)
-
-**Infra & Observability**
+**DevOps · Infra · Observability**
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
+![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white)
+![Apache Kafka](https://img.shields.io/badge/Kafka-231F20?style=flat-square&logo=apachekafka&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white)
+![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
+![Proxmox](https://img.shields.io/badge/Proxmox-E57000?style=flat-square&logo=proxmox&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
 ![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white)
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 
 </div>
 
