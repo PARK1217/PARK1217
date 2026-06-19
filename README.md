@@ -1,6 +1,8 @@
 <div align="center">
 
-# Susan &nbsp;·&nbsp; 박수산
+# Susan
+
+###### @PARK1217
 
 ### AI Engineer &amp; Backend Developer
 
