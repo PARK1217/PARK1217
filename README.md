@@ -1,18 +1,18 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:6366F1,100:8B5CF6&height=200&section=header&text=Susan&fontColor=ffffff&fontSize=72&fontAlignY=38&desc=AI%20Engineer%20%26%20Full-Stack%20Developer&descSize=20&descAlignY=60&animation=fadeIn" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:6366F1,100:8B5CF6&amp;height=200&amp;section=header&amp;text=Susan&amp;fontColor=ffffff&amp;fontSize=72&amp;fontAlignY=38&amp;desc=AI%20Engineer%20%26%20Full-Stack%20Developer&amp;descSize=20&amp;descAlignY=60&amp;animation=fadeIn" width="100%" />
 
 <p>
   <em>RAG · LLM 애플리케이션과 풀스택 서비스를 처음부터 끝까지 만듭니다.</em>
 </p>
 
 <a href="mailto:fasosan@gmail.com">
-  <img src="https://img.shields.io/badge/Email-fasosan@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white" />
+  <img src="https://img.shields.io/badge/Email-fasosan@gmail.com-EA4335?style=flat-square&amp;logo=gmail&amp;logoColor=white" />
 </a>
 <a href="https://github.com/PARK1217">
-  <img src="https://img.shields.io/badge/GitHub-PARK1217-181717?style=flat-square&logo=github&logoColor=white" />
+  <img src="https://img.shields.io/badge/GitHub-PARK1217-181717?style=flat-square&amp;logo=github&amp;logoColor=white" />
 </a>
-<img src="https://komarev.com/ghpvc/?username=PARK1217&style=flat-square&color=6366F1&label=Profile+Views" />
+<img src="https://komarev.com/ghpvc/?username=PARK1217&amp;style=flat-square&amp;color=6366F1&amp;label=Profile+Views" />
 
 </div>
 
@@ -158,12 +158,12 @@ motto:   "기술은 도구일 뿐, 결국 사용자가 쓰는 것을 만든다."
 
 <div align="center">
 
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=PARK1217&show_icons=true&hide_border=true&title_color=6366F1&icon_color=8B5CF6&text_color=666&bg_color=ffffff&include_all_commits=true&count_private=true" />
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=PARK1217&layout=compact&hide_border=true&title_color=6366F1&text_color=666&bg_color=ffffff&langs_count=8" />
+<img height="165" src="https://github-readme-stats.vercel.app/api?username=PARK1217&amp;show_icons=true&amp;hide_border=true&amp;title_color=6366F1&amp;icon_color=8B5CF6&amp;text_color=666&amp;bg_color=ffffff&amp;include_all_commits=true&amp;count_private=true" />
+<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=PARK1217&amp;layout=compact&amp;hide_border=true&amp;title_color=6366F1&amp;text_color=666&amp;bg_color=ffffff&amp;langs_count=8" />
 
 <br />
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=PARK1217&hide_border=true&ring=6366F1&fire=8B5CF6&currStreakLabel=6366F1&background=ffffff&sideLabels=666&dates=999&currStreakNum=333&sideNums=333" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=PARK1217&amp;hide_border=true&amp;ring=6366F1&amp;fire=8B5CF6&amp;currStreakLabel=6366F1&amp;background=ffffff&amp;sideLabels=666&amp;dates=999&amp;currStreakNum=333&amp;sideNums=333" />
 
 </div>
 
@@ -173,6 +173,6 @@ motto:   "기술은 도구일 뿐, 결국 사용자가 쓰는 것을 만든다."
 
 📫 **Contact** &nbsp;·&nbsp; <a href="mailto:fasosan@gmail.com">fasosan@gmail.com</a>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:8B5CF6,100:6366F1&height=120&section=footer" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:8B5CF6,100:6366F1&amp;height=120&amp;section=footer" width="100%" />
 
 </div>
