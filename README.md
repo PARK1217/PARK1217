@@ -105,6 +105,23 @@ motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만�
 
 ## 📌 Featured Projects
 
+### 🐱 고양이 수유 리포트 &nbsp;<sub><sup>· LIVE · 매일 사용 중</sup></sub>
+
+> 초보 집사를 위한 새끼고양이 수유·성장 기록 **PWA** — 실제 배포해 **매일 사용 중인 제품**
+
+수유할 때마다 빠르게 기록하면 수유량·권장량·다음 수유/약 시각을 자동 계산하고, 대시보드 **신호등(🟢🟡🔴)** 으로 상태를 한눈에. AI가 상태를 요약하고 주수별 성장 가이드를 출처와 함께 안내합니다.
+
+- 📲 **PWA + Web Push** — 위험 시각이 가까울수록 간격을 좁히는 에스컬레이션 재알림, 함께 돌보는 멤버 전원에게 발송
+- 🤖 **멀티 LLM + RAG** — Groq·Mistral·HuggingFace 폴백 체인, pgvector 정확검색·출처 표시·시맨틱 캐시
+- 👨‍👩‍👧 **함께 돌보기** — 1회용 초대키 기반 멀티유저, 관리자 콘솔, 성장 리포트 PDF 출력
+- 🚀 **운영 자동화** — Docker Compose · Caddy(HTTPS) · Cloudflare Tunnel · Jenkins CI/CD
+
+`React` `Vite` `TypeScript` `Tailwind` `Express` `PostgreSQL` `pgvector` `Web Push` `Docker` `Jenkins`
+
+**[🌐 cat.chobihome.site](https://cat.chobihome.site)**
+
+<br />
+
 <table>
 <tr>
 <td width="50%" valign="top">
