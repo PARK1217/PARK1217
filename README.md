@@ -1,10 +1,12 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:6366F1,100:8B5CF6&amp;height=200&amp;section=header&amp;text=Susan&amp;fontColor=ffffff&amp;fontSize=72&amp;fontAlignY=38&amp;desc=AI%20Engineer%20%26%20Full-Stack%20Developer&amp;descSize=20&amp;descAlignY=60&amp;animation=fadeIn" width="100%" />
+# Susan &nbsp;·&nbsp; 박수산
 
-<p>
-  <em>RAG · LLM 애플리케이션과 풀스택 서비스를 처음부터 끝까지 만듭니다.</em>
-</p>
+### AI Engineer &amp; Backend Developer
+
+<em>RAG · LLM 애플리케이션과 풀스택 서비스를 처음부터 끝까지 만듭니다.</em>
+
+<br />
 
 <a href="mailto:fasosan@gmail.com">
   <img src="https://img.shields.io/badge/Email-fasosan@gmail.com-EA4335?style=flat-square&amp;logo=gmail&amp;logoColor=white" />
@@ -12,7 +14,6 @@
 <a href="https://github.com/PARK1217">
   <img src="https://img.shields.io/badge/GitHub-PARK1217-181717?style=flat-square&amp;logo=github&amp;logoColor=white" />
 </a>
-<img src="https://komarev.com/ghpvc/?username=PARK1217&amp;style=flat-square&amp;color=6366F1&amp;label=Profile+Views" />
 
 </div>
 
@@ -195,7 +196,5 @@ motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만�
 <div align="center">
 
 📫 **Contact** &nbsp;·&nbsp; <a href="mailto:fasosan@gmail.com">fasosan@gmail.com</a>
-
-<img src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:8B5CF6,100:6366F1&amp;height=120&amp;section=footer" width="100%" />
 
 </div>
