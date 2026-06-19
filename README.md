@@ -25,13 +25,14 @@
 name:        Susan (PARK1217)
 role:        AI Engineer & Backend Developer
 experience:  금융·헬스케어 백엔드 3년+ → AI/RAG·LLM 전문화
-focus:       [ RAG, LLM Applications, MCP/Agent, Backend, MLOps/Observability ]
+focus:       [ RAG, LLM Applications, Backend, MLOps/Observability ]
+next:        MCP · Agent 로 확장 중
 loves:       문제를 끝까지 파고들어 "동작하는 제품"으로 완성하는 것
 motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만든다."
 ```
 
 - 🏦 **금융·헬스케어 도메인 백엔드 3년+** — 외부기관 API 연동, 트랜잭션 복구, 클라우드 무중단 마이그레이션을 실무에서 단독 수행했습니다.
-- 🤖 **RAG · LLM · MCP/Agent** 기반 서비스를 설계부터 배포까지 직접 구현합니다.
+- 🤖 **RAG · LLM** 기반 서비스를 설계부터 배포까지 직접 구현하고, **MCP · Agent로 확장 중**입니다.
 - 🧩 **백엔드(FastAPI · Spring)부터 프론트(Next.js · Vue)까지** 풀스택으로 작업합니다.
 - 📊 **관측성(Prometheus · Grafana · Loki · Tempo)** 으로 모델·서비스 성능을 데이터로 검증합니다.
 - 🚀 작은 실습부터 운영 중인 풀스택 제품까지, 직접 만들고 배포한 결과물로 말합니다.
@@ -54,7 +55,6 @@ motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만�
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
 ![LiteLLM](https://img.shields.io/badge/LiteLLM-6E56CF?style=flat-square&logoColor=white)
 ![RAG](https://img.shields.io/badge/RAG-4B8BBE?style=flat-square&logoColor=white)
-![MCP](https://img.shields.io/badge/MCP-000000?style=flat-square&logoColor=white)
 ![LLM APIs](https://img.shields.io/badge/LLM%20APIs-412991?style=flat-square&logo=openai&logoColor=white)
 ![pgvector](https://img.shields.io/badge/pgvector-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 ![FAISS](https://img.shields.io/badge/FAISS-0467DF?style=flat-square&logo=meta&logoColor=white)
