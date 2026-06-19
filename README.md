@@ -2,8 +2,6 @@
 
 # Susan
 
-###### @PARK1217
-
 ### AI Engineer &amp; Backend Developer
 
 <em>RAG · LLM 애플리케이션과 풀스택 서비스를 처음부터 끝까지 만듭니다.</em>
@@ -57,7 +55,7 @@ motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만�
 ![LiteLLM](https://img.shields.io/badge/LiteLLM-6E56CF?style=flat-square&logoColor=white)
 ![RAG](https://img.shields.io/badge/RAG-4B8BBE?style=flat-square&logoColor=white)
 ![MCP](https://img.shields.io/badge/MCP-000000?style=flat-square&logoColor=white)
-![LLM APIs](https://img.shields.io/badge/LLM%20APIs%20(OpenAI·Groq·Mistral)-412991?style=flat-square&logo=openai&logoColor=white)
+![LLM APIs](https://img.shields.io/badge/LLM%20APIs-412991?style=flat-square&logo=openai&logoColor=white)
 ![pgvector](https://img.shields.io/badge/pgvector-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 ![FAISS](https://img.shields.io/badge/FAISS-0467DF?style=flat-square&logo=meta&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)
@@ -76,7 +74,7 @@ motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만�
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 ![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=oracle&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
-![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=flat-square&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
 
 **Frontend**
@@ -94,8 +92,8 @@ motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만�
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
 ![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white)
 ![Apache Kafka](https://img.shields.io/badge/Kafka-231F20?style=flat-square&logo=apachekafka&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white)
-![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logoColor=white)
+![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat-square&logoColor=white)
 ![Proxmox](https://img.shields.io/badge/Proxmox-E57000?style=flat-square&logo=proxmox&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
 ![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white)
@@ -184,12 +182,12 @@ motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만�
 
 <div align="center">
 
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=PARK1217&amp;show_icons=true&amp;hide_border=true&amp;title_color=6366F1&amp;icon_color=8B5CF6&amp;text_color=666&amp;bg_color=ffffff&amp;include_all_commits=true&amp;count_private=true" />
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=PARK1217&amp;layout=compact&amp;hide_border=true&amp;title_color=6366F1&amp;text_color=666&amp;bg_color=ffffff&amp;langs_count=8" />
+<img height="165" src="https://github-readme-stats.vercel.app/api?username=PARK1217&amp;show_icons=true&amp;hide_border=true&amp;title_color=6366F1&amp;icon_color=8B5CF6&amp;text_color=808080&amp;bg_color=00000000&amp;include_all_commits=true&amp;count_private=true" />
+<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=PARK1217&amp;layout=compact&amp;hide_border=true&amp;title_color=6366F1&amp;text_color=808080&amp;bg_color=00000000&amp;langs_count=8" />
 
 <br />
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=PARK1217&amp;hide_border=true&amp;ring=6366F1&amp;fire=8B5CF6&amp;currStreakLabel=6366F1&amp;background=ffffff&amp;sideLabels=666&amp;dates=999&amp;currStreakNum=333&amp;sideNums=333" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=PARK1217&amp;hide_border=true&amp;ring=6366F1&amp;fire=8B5CF6&amp;currStreakLabel=6366F1&amp;background=00000000&amp;sideLabels=808080&amp;dates=808080&amp;currStreakNum=8B5CF6&amp;sideNums=808080" />
 
 </div>
 
