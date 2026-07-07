@@ -108,7 +108,7 @@
 
 <br />
 
-### 🏦 다온뱅크 (Da-On Bank) &nbsp;<sub><sup>공개 저장소 · 코드 열람 가능</sup></sub>
+### 🏦 다온뱅크 (Da-On Bank) &nbsp;<sub><sup>라이브 데모 운영 중</sup></sub>
 
 은행에서 흔히 보는 화면을 처음부터 끝까지 만들어 본 풀스택 포트폴리오입니다. 계좌 이체(같은 은행·타행·거액 세 갈래)부터 자동이체 워커, 대출 한도조회→신청→약정→실행→상환, 공동명의·미성년 통장 권한 분리까지 실제 은행 업무 흐름을 그대로 따라갑니다.
 
@@ -116,7 +116,7 @@
 
 `FastAPI` `Next.js 14` `PostgreSQL` `Kafka` `XGBoost` `IsolationForest` `Phoenix`
 
-**[저장소 →](https://github.com/PARK1217/bank-portfolio)**
+**[데모 사이트 →](https://daon.chobihome.site)**
 
 <br />
 
