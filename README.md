@@ -29,57 +29,14 @@
 
 ## Tech Stack
 
-<div align="center">
-
-**Languages**
-
-![Python](https://img.shields.io/badge/Python-4F46E5?style=for-the-badge&logo=python&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-4F46E5?style=for-the-badge&logo=typescript&logoColor=white)
-![Java](https://img.shields.io/badge/Java-4F46E5?style=for-the-badge&logo=openjdk&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-4F46E5?style=for-the-badge&logo=javascript&logoColor=white)
-
-**AI · LLM**
-
-![LangChain](https://img.shields.io/badge/LangChain-7C3AED?style=for-the-badge&logo=langchain&logoColor=white)
-![RAG](https://img.shields.io/badge/RAG-7C3AED?style=for-the-badge&logoColor=white)
-![LLM APIs](https://img.shields.io/badge/LLM%20APIs-7C3AED?style=for-the-badge&logo=openai&logoColor=white)
-![pgvector](https://img.shields.io/badge/pgvector-7C3AED?style=for-the-badge&logo=postgresql&logoColor=white)
-![FAISS](https://img.shields.io/badge/FAISS-7C3AED?style=for-the-badge&logo=meta&logoColor=white)
-![FinBERT](https://img.shields.io/badge/FinBERT-7C3AED?style=for-the-badge&logo=huggingface&logoColor=white)
-![XGBoost](https://img.shields.io/badge/XGBoost-7C3AED?style=for-the-badge&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-7C3AED?style=for-the-badge&logo=scikitlearn&logoColor=white)
-
-**Backend**
-
-![FastAPI](https://img.shields.io/badge/FastAPI-0D9488?style=for-the-badge&logo=fastapi&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-0D9488?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Spring](https://img.shields.io/badge/Spring-0D9488?style=for-the-badge&logo=spring&logoColor=white)
-
-**Data**
-
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-2563EB?style=for-the-badge&logo=postgresql&logoColor=white)
-![Oracle](https://img.shields.io/badge/Oracle-2563EB?style=for-the-badge&logo=oracle&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-2563EB?style=for-the-badge&logo=mysql&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-2563EB?style=for-the-badge&logo=redis&logoColor=white)
-
-**Frontend**
-
-![React](https://img.shields.io/badge/React-0891B2?style=for-the-badge&logo=react&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-0891B2?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![Vue.js](https://img.shields.io/badge/Vue.js-0891B2?style=for-the-badge&logo=vuedotjs&logoColor=white)
-![Tailwind](https://img.shields.io/badge/Tailwind-0891B2?style=for-the-badge&logo=tailwindcss&logoColor=white)
-
-**Infra**
-
-![Docker](https://img.shields.io/badge/Docker-475569?style=for-the-badge&logo=docker&logoColor=white)
-![Jenkins](https://img.shields.io/badge/Jenkins-475569?style=for-the-badge&logo=jenkins&logoColor=white)
-![Kafka](https://img.shields.io/badge/Kafka-475569?style=for-the-badge&logo=apachekafka&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-475569?style=for-the-badge&logo=amazonwebservices&logoColor=white)
-![Azure](https://img.shields.io/badge/Azure-475569?style=for-the-badge&logo=microsoftazure&logoColor=white)
-![Grafana](https://img.shields.io/badge/Grafana-475569?style=for-the-badge&logo=grafana&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-475569?style=for-the-badge&logo=linux&logoColor=white)
-
-</div>
+| 분류 | 기술 |
+| ---: | :--- |
+| **Languages** | Python · TypeScript · Java · JavaScript |
+| **AI · LLM** | LangChain · RAG · LLM APIs (OpenAI · Groq · Mistral) · pgvector · FAISS · FinBERT · XGBoost · scikit-learn |
+| **Backend** | FastAPI · Node.js · Spring |
+| **Data** | PostgreSQL · Oracle · MySQL · Redis |
+| **Frontend** | React · Next.js · Vue.js · Tailwind |
+| **Infra** | Docker · Jenkins · Kafka · AWS · Azure · Grafana · Linux |
 
 <br />
 
