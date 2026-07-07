@@ -108,19 +108,20 @@
 
 <br />
 
-<table>
-<tr>
-<td width="50%" valign="top">
+### 🏦 다온뱅크 (Da-On Bank) &nbsp;<sub><sup>공개 저장소 · 코드 열람 가능</sup></sub>
 
-### 🏦 다온뱅크
+은행에서 흔히 보는 화면을 처음부터 끝까지 만들어 본 풀스택 포트폴리오입니다. 계좌 이체(같은 은행·타행·거액 세 갈래)부터 자동이체 워커, 대출 한도조회→신청→약정→실행→상환, 공동명의·미성년 통장 권한 분리까지 실제 은행 업무 흐름을 그대로 따라갑니다.
 
-은행에서 흔히 보는 화면을 한 묶음으로 만들어 본 풀스택 프로젝트입니다. 계좌 이체부터 대출 심사, 의심거래 탐지까지 실제로 돌아갑니다. RAG 챗봇이 약관·SOP를 근거로 답하고, 룰·XGBoost·LLM을 엮은 파이프라인이 이상거래를 잡아내며, 대출은 6개 항목을 점수화해 자동 심사합니다.
+챗봇과 ML을 데모로 끝내지 않으려 했어요. 대출은 XGBoost가 점수를 매겨 확신이 설 때만 자동 처리하고, 애매한 회색지대(0.30~0.85)는 사람 직원 검토 큐로 넘깁니다. 의심거래는 Kafka로 흘러가 룰 8종 + IsolationForest 이상탐지 + LLM 한국어 설명이 한 파이프라인에서 돌고, 챗봇은 FAQ→키워드→임베딩 3단계로 찾다가 다 애매하면 "모르겠다"고 답해 환각을 막습니다. LLM 호출과 토큰은 Phoenix로 추적하고, 관리자 API는 전부 감사 로그에 남으며 audience 기반 권한 분리로 내부 SOP가 사용자에게 새지 않게 했습니다.
 
-`FastAPI` `Next.js` `PostgreSQL` `Kafka` `XGBoost`
+`FastAPI` `Next.js 14` `PostgreSQL` `Kafka` `XGBoost` `IsolationForest` `Phoenix`
 
 **[저장소 →](https://github.com/PARK1217/bank-portfolio)**
 
-</td>
+<br />
+
+<table>
+<tr>
 <td width="50%" valign="top">
 
 ### 📚 RAG Study Platform
@@ -132,8 +133,6 @@
 **[저장소 →](https://github.com/PARK1217/rag-study-platform)**
 
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 
 ### 🛰️ Interface Hub
@@ -145,19 +144,10 @@ REST·SOAP·MQ·SFTP·Batch 같은 외부 인터페이스를 한 화면에서 �
 **[라이브 →](https://interface-hub.chobihome.site/)**
 
 </td>
-<td width="50%" valign="top">
-
-### 🧰 Python Multi-Tool
-
-파이썬 문법을 실무형 웹 도구로 옮겨 본 연습 프로젝트입니다. 비밀번호 보안 검사기와 통계 대시보드를 관심사 분리 구조로 구성했습니다.
-
-`Python` `Streamlit`
-
-**[저장소 →](https://github.com/PARK1217/mini_project)**
-
-</td>
 </tr>
 </table>
+
+<sub>그 외 · 🧰 **Python Multi-Tool** — 파이썬 문법을 실무형 웹 도구로 옮겨 본 연습 프로젝트 (비밀번호 검사기·통계 대시보드) · `Python` `Streamlit` · **[저장소 →](https://github.com/PARK1217/mini_project)**</sub>
 
 <br />
 
