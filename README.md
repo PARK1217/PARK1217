@@ -141,8 +141,8 @@ motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만�
 
 `Python` `FastAPI` `PostgreSQL` `Redis` `APScheduler` `FinBERT` `Groq/Mistral` `Docker` `Cloudflare Tunnel`
 
-**[🌐 라이브 데모 → stock.chobihome.site](https://stock.chobihome.site)**
-<br /><sub>🔑 데모 비밀번호 **`demo`** · 데모 계정은 **합성(가짜) 데이터**만 보여줍니다 — 실계좌는 완전히 격리됩니다</sub>
+**[🌐 라이브 데모 체험 → stock.chobihome.site/demo](https://stock.chobihome.site/demo)** &nbsp;<sub>클릭 한 번으로 입장</sub>
+<br /><sub>데모는 **합성(가짜) 데이터**만 보여줍니다 — 실계좌·자산은 완전히 격리됩니다 · 직접 로그인 시 비밀번호 `demo`</sub>
 
 </td>
 <td width="42%" valign="top">
