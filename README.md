@@ -31,7 +31,7 @@
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=py,ts,java,js,fastapi,nodejs,spring,postgres,mysql,redis,react,nextjs,vuejs,tailwind,docker,jenkins,kafka,aws,azure,grafana,linux&perline=11" alt="Python, TypeScript, Java, JavaScript, FastAPI, Node.js, Spring, PostgreSQL, MySQL, Redis, React, Next.js, Vue, Tailwind, Docker, Jenkins, Kafka, AWS, Azure, Grafana, Linux" />
+<img src="https://skillicons.dev/icons?i=py,ts,java,js,fastapi,nodejs,spring,postgres,mysql,redis,react,nextjs,vuejs,tailwind,docker,jenkins,kafka,aws,azure,grafana,linux&perline=7&theme=light" alt="Python, TypeScript, Java, JavaScript, FastAPI, Node.js, Spring, PostgreSQL, MySQL, Redis, React, Next.js, Vue, Tailwind, Docker, Jenkins, Kafka, AWS, Azure, Grafana, Linux" />
 
 <br /><br />
 
