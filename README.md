@@ -31,11 +31,53 @@
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=py,ts,java,js,fastapi,nodejs,spring,postgres,mysql,redis,react,nextjs,vuejs,tailwind,docker,jenkins,kafka,aws,azure,grafana,linux&perline=7&theme=light" alt="Python, TypeScript, Java, JavaScript, FastAPI, Node.js, Spring, PostgreSQL, MySQL, Redis, React, Next.js, Vue, Tailwind, Docker, Jenkins, Kafka, AWS, Azure, Grafana, Linux" />
+**Languages**
 
-<br /><br />
+![Python](https://img.shields.io/badge/Python-2b3440?style=flat-square&logo=python&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-2b3440?style=flat-square&logo=typescript&logoColor=white)
+![Java](https://img.shields.io/badge/Java-2b3440?style=flat-square&logo=openjdk&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-2b3440?style=flat-square&logo=javascript&logoColor=white)
 
-**AI · LLM** &nbsp;&nbsp; LangChain · RAG · LLM APIs (OpenAI · Groq · Mistral) · pgvector · FAISS · FinBERT · XGBoost · scikit-learn
+**AI · LLM**
+
+![LangChain](https://img.shields.io/badge/LangChain-2b3440?style=flat-square&logo=langchain&logoColor=white)
+![RAG](https://img.shields.io/badge/RAG-2b3440?style=flat-square&logoColor=white)
+![LLM APIs](https://img.shields.io/badge/LLM%20APIs-2b3440?style=flat-square&logo=openai&logoColor=white)
+![pgvector](https://img.shields.io/badge/pgvector-2b3440?style=flat-square&logo=postgresql&logoColor=white)
+![FAISS](https://img.shields.io/badge/FAISS-2b3440?style=flat-square&logo=meta&logoColor=white)
+![FinBERT](https://img.shields.io/badge/FinBERT-2b3440?style=flat-square&logo=huggingface&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-2b3440?style=flat-square&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-2b3440?style=flat-square&logo=scikitlearn&logoColor=white)
+
+**Backend**
+
+![FastAPI](https://img.shields.io/badge/FastAPI-2b3440?style=flat-square&logo=fastapi&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-2b3440?style=flat-square&logo=nodedotjs&logoColor=white)
+![Spring](https://img.shields.io/badge/Spring-2b3440?style=flat-square&logo=spring&logoColor=white)
+
+**Data**
+
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-2b3440?style=flat-square&logo=postgresql&logoColor=white)
+![Oracle](https://img.shields.io/badge/Oracle-2b3440?style=flat-square&logo=oracle&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-2b3440?style=flat-square&logo=mysql&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-2b3440?style=flat-square&logo=redis&logoColor=white)
+
+**Frontend**
+
+![React](https://img.shields.io/badge/React-2b3440?style=flat-square&logo=react&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-2b3440?style=flat-square&logo=nextdotjs&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-2b3440?style=flat-square&logo=vuedotjs&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind-2b3440?style=flat-square&logo=tailwindcss&logoColor=white)
+
+**Infra**
+
+![Docker](https://img.shields.io/badge/Docker-2b3440?style=flat-square&logo=docker&logoColor=white)
+![Jenkins](https://img.shields.io/badge/Jenkins-2b3440?style=flat-square&logo=jenkins&logoColor=white)
+![Kafka](https://img.shields.io/badge/Kafka-2b3440?style=flat-square&logo=apachekafka&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-2b3440?style=flat-square&logo=amazonwebservices&logoColor=white)
+![Azure](https://img.shields.io/badge/Azure-2b3440?style=flat-square&logo=microsoftazure&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-2b3440?style=flat-square&logo=grafana&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-2b3440?style=flat-square&logo=linux&logoColor=white)
 
 </div>
 
