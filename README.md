@@ -33,51 +33,51 @@
 
 **Languages**
 
-![Python](https://img.shields.io/badge/Python-2b3440?style=flat-square&logo=python&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-2b3440?style=flat-square&logo=typescript&logoColor=white)
-![Java](https://img.shields.io/badge/Java-2b3440?style=flat-square&logo=openjdk&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-2b3440?style=flat-square&logo=javascript&logoColor=white)
+![Python](https://img.shields.io/badge/Python-4F46E5?style=for-the-badge&logo=python&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-4F46E5?style=for-the-badge&logo=typescript&logoColor=white)
+![Java](https://img.shields.io/badge/Java-4F46E5?style=for-the-badge&logo=openjdk&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-4F46E5?style=for-the-badge&logo=javascript&logoColor=white)
 
 **AI · LLM**
 
-![LangChain](https://img.shields.io/badge/LangChain-2b3440?style=flat-square&logo=langchain&logoColor=white)
-![RAG](https://img.shields.io/badge/RAG-2b3440?style=flat-square&logoColor=white)
-![LLM APIs](https://img.shields.io/badge/LLM%20APIs-2b3440?style=flat-square&logo=openai&logoColor=white)
-![pgvector](https://img.shields.io/badge/pgvector-2b3440?style=flat-square&logo=postgresql&logoColor=white)
-![FAISS](https://img.shields.io/badge/FAISS-2b3440?style=flat-square&logo=meta&logoColor=white)
-![FinBERT](https://img.shields.io/badge/FinBERT-2b3440?style=flat-square&logo=huggingface&logoColor=white)
-![XGBoost](https://img.shields.io/badge/XGBoost-2b3440?style=flat-square&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-2b3440?style=flat-square&logo=scikitlearn&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-7C3AED?style=for-the-badge&logo=langchain&logoColor=white)
+![RAG](https://img.shields.io/badge/RAG-7C3AED?style=for-the-badge&logoColor=white)
+![LLM APIs](https://img.shields.io/badge/LLM%20APIs-7C3AED?style=for-the-badge&logo=openai&logoColor=white)
+![pgvector](https://img.shields.io/badge/pgvector-7C3AED?style=for-the-badge&logo=postgresql&logoColor=white)
+![FAISS](https://img.shields.io/badge/FAISS-7C3AED?style=for-the-badge&logo=meta&logoColor=white)
+![FinBERT](https://img.shields.io/badge/FinBERT-7C3AED?style=for-the-badge&logo=huggingface&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-7C3AED?style=for-the-badge&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-7C3AED?style=for-the-badge&logo=scikitlearn&logoColor=white)
 
 **Backend**
 
-![FastAPI](https://img.shields.io/badge/FastAPI-2b3440?style=flat-square&logo=fastapi&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-2b3440?style=flat-square&logo=nodedotjs&logoColor=white)
-![Spring](https://img.shields.io/badge/Spring-2b3440?style=flat-square&logo=spring&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0D9488?style=for-the-badge&logo=fastapi&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-0D9488?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Spring](https://img.shields.io/badge/Spring-0D9488?style=for-the-badge&logo=spring&logoColor=white)
 
 **Data**
 
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-2b3440?style=flat-square&logo=postgresql&logoColor=white)
-![Oracle](https://img.shields.io/badge/Oracle-2b3440?style=flat-square&logo=oracle&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-2b3440?style=flat-square&logo=mysql&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-2b3440?style=flat-square&logo=redis&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-2563EB?style=for-the-badge&logo=postgresql&logoColor=white)
+![Oracle](https://img.shields.io/badge/Oracle-2563EB?style=for-the-badge&logo=oracle&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-2563EB?style=for-the-badge&logo=mysql&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-2563EB?style=for-the-badge&logo=redis&logoColor=white)
 
 **Frontend**
 
-![React](https://img.shields.io/badge/React-2b3440?style=flat-square&logo=react&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-2b3440?style=flat-square&logo=nextdotjs&logoColor=white)
-![Vue.js](https://img.shields.io/badge/Vue.js-2b3440?style=flat-square&logo=vuedotjs&logoColor=white)
-![Tailwind](https://img.shields.io/badge/Tailwind-2b3440?style=flat-square&logo=tailwindcss&logoColor=white)
+![React](https://img.shields.io/badge/React-0891B2?style=for-the-badge&logo=react&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-0891B2?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-0891B2?style=for-the-badge&logo=vuedotjs&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind-0891B2?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
 **Infra**
 
-![Docker](https://img.shields.io/badge/Docker-2b3440?style=flat-square&logo=docker&logoColor=white)
-![Jenkins](https://img.shields.io/badge/Jenkins-2b3440?style=flat-square&logo=jenkins&logoColor=white)
-![Kafka](https://img.shields.io/badge/Kafka-2b3440?style=flat-square&logo=apachekafka&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-2b3440?style=flat-square&logo=amazonwebservices&logoColor=white)
-![Azure](https://img.shields.io/badge/Azure-2b3440?style=flat-square&logo=microsoftazure&logoColor=white)
-![Grafana](https://img.shields.io/badge/Grafana-2b3440?style=flat-square&logo=grafana&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-2b3440?style=flat-square&logo=linux&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-475569?style=for-the-badge&logo=docker&logoColor=white)
+![Jenkins](https://img.shields.io/badge/Jenkins-475569?style=for-the-badge&logo=jenkins&logoColor=white)
+![Kafka](https://img.shields.io/badge/Kafka-475569?style=for-the-badge&logo=apachekafka&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-475569?style=for-the-badge&logo=amazonwebservices&logoColor=white)
+![Azure](https://img.shields.io/badge/Azure-475569?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-475569?style=for-the-badge&logo=grafana&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-475569?style=for-the-badge&logo=linux&logoColor=white)
 
 </div>
 
