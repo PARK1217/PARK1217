@@ -85,16 +85,15 @@
 
 ## Projects
 
-### 🐱 고양이 수유 리포트 &nbsp;<sub><sup>집 로컬 서버 · 가족이 사용 중</sup></sub>
+### 🏦 다온뱅크 (Da-On Bank) &nbsp;<sub><sup>라이브 데모 운영 중</sup></sub>
 
-길에서 업어온 젖먹이 고양이를, 수유 한 번 안 해본 초보 집사가 잘 키울 수 있을까 — 그 막막함에서 시작한 앱입니다. 전문 지식이 없어도 AI 안내를 받아 때맞춰 먹이고 위험 신호를 놓치지 않도록 돕고 싶었고, 지금은 집 서버에 올려 가족이 매일 쓰고 있습니다.
+은행에서 흔히 보는 화면을 처음부터 끝까지 만들어 본 풀스택 포트폴리오입니다. 계좌 이체(같은 은행·타행·거액 세 갈래)부터 자동이체 워커, 대출 한도조회→신청→약정→실행→상환, 공동명의·미성년 통장 권한 분리까지 실제 은행 업무 흐름을 그대로 따라갑니다.
 
-수유량과 다음 수유·약 시각을 자동으로 계산하고, 대시보드 신호등으로 지금 상태를 한눈에 보여줍니다. 멀티 LLM(Groq·Mistral·HuggingFace 폴백)과 RAG로 주수별 성장 가이드를 출처와 함께 안내하고, Web Push는 위험 시각이 가까워질수록 더 자주 알립니다. 함께 돌보는 가족은 1회용 초대키로 연결되며, 전체 서비스는 Docker·Caddy·Cloudflare Tunnel 위에서 Jenkins로 자동 배포됩니다.
+챗봇과 ML을 데모로 끝내지 않으려 했어요. 대출은 XGBoost가 점수를 매겨 확신이 설 때만 자동 처리하고, 애매한 회색지대(0.30~0.85)는 사람 직원 검토 큐로 넘깁니다. 의심거래는 Kafka로 흘러가 룰 8종 + IsolationForest 이상탐지 + LLM 한국어 설명이 한 파이프라인에서 돌고, 챗봇은 FAQ→키워드→임베딩 3단계로 찾다가 다 애매하면 "모르겠다"고 답해 환각을 막습니다. LLM 호출과 토큰은 Phoenix로 추적하고, 관리자 API는 전부 감사 로그에 남으며 audience 기반 권한 분리로 내부 SOP가 사용자에게 새지 않게 했습니다.
 
-`React` `TypeScript` `Express` `PostgreSQL` `pgvector` `Web Push` `Docker` `Jenkins`
+`FastAPI` `Next.js 14` `PostgreSQL` `Kafka` `XGBoost` `IsolationForest` `Phoenix`
 
-**[라이브 데모 → cat.chobihome.site/demo](https://cat.chobihome.site/demo)**
-<br /><sub>데모는 합성 데이터의 '데모냥이'만 보여줍니다 — 실제 사용자·아이 정보와 격리되고 나가면 초기화됩니다. 직접 로그인: `demo@chobihome.site` / `demo`</sub>
+**[데모 사이트 →](https://daon.chobihome.site)**
 
 <br />
 
@@ -111,31 +110,21 @@
 
 <br />
 
-### 🏦 다온뱅크 (Da-On Bank) &nbsp;<sub><sup>라이브 데모 운영 중</sup></sub>
+### 🐱 고양이 수유 리포트 &nbsp;<sub><sup>집 로컬 서버 · 가족이 사용 중</sup></sub>
 
-은행에서 흔히 보는 화면을 처음부터 끝까지 만들어 본 풀스택 포트폴리오입니다. 계좌 이체(같은 은행·타행·거액 세 갈래)부터 자동이체 워커, 대출 한도조회→신청→약정→실행→상환, 공동명의·미성년 통장 권한 분리까지 실제 은행 업무 흐름을 그대로 따라갑니다.
+길에서 업어온 젖먹이 고양이를, 수유 한 번 안 해본 초보 집사가 잘 키울 수 있을까 — 그 막막함에서 시작한 앱입니다. 전문 지식이 없어도 AI 안내를 받아 때맞춰 먹이고 위험 신호를 놓치지 않도록 돕고 싶었고, 지금은 집 서버에 올려 가족이 매일 쓰고 있습니다.
 
-챗봇과 ML을 데모로 끝내지 않으려 했어요. 대출은 XGBoost가 점수를 매겨 확신이 설 때만 자동 처리하고, 애매한 회색지대(0.30~0.85)는 사람 직원 검토 큐로 넘깁니다. 의심거래는 Kafka로 흘러가 룰 8종 + IsolationForest 이상탐지 + LLM 한국어 설명이 한 파이프라인에서 돌고, 챗봇은 FAQ→키워드→임베딩 3단계로 찾다가 다 애매하면 "모르겠다"고 답해 환각을 막습니다. LLM 호출과 토큰은 Phoenix로 추적하고, 관리자 API는 전부 감사 로그에 남으며 audience 기반 권한 분리로 내부 SOP가 사용자에게 새지 않게 했습니다.
+수유량과 다음 수유·약 시각을 자동으로 계산하고, 대시보드 신호등으로 지금 상태를 한눈에 보여줍니다. 멀티 LLM(Groq·Mistral·HuggingFace 폴백)과 RAG로 주수별 성장 가이드를 출처와 함께 안내하고, Web Push는 위험 시각이 가까워질수록 더 자주 알립니다. 함께 돌보는 가족은 1회용 초대키로 연결되며, 전체 서비스는 Docker·Caddy·Cloudflare Tunnel 위에서 Jenkins로 자동 배포됩니다.
 
-`FastAPI` `Next.js 14` `PostgreSQL` `Kafka` `XGBoost` `IsolationForest` `Phoenix`
+`React` `TypeScript` `Express` `PostgreSQL` `pgvector` `Web Push` `Docker` `Jenkins`
 
-**[데모 사이트 →](https://daon.chobihome.site)**
+**[라이브 데모 → cat.chobihome.site/demo](https://cat.chobihome.site/demo)**
+<br /><sub>데모는 합성 데이터의 '데모냥이'만 보여줍니다 — 실제 사용자·아이 정보와 격리되고 나가면 초기화됩니다. 직접 로그인: `demo@chobihome.site` / `demo`</sub>
 
 <br />
 
 <table>
 <tr>
-<td width="50%" valign="top">
-
-### 📚 RAG Study Platform
-
-업로드한 문서로 학습 챗봇을 만들고, AI가 문제를 내주는 학습 플랫폼입니다. LLM 7종을 런타임에 바꿔가며 비용·속도·품질을 비교하고, Prometheus·Grafana로 호출·토큰을 실시간으로 들여다봅니다.
-
-`Vue 3` `FastAPI` `LangChain` `FAISS` `Grafana`
-
-**[저장소 →](https://github.com/PARK1217/rag-study-platform)**
-
-</td>
 <td width="50%" valign="top">
 
 ### 🛰️ Interface Hub
@@ -145,6 +134,17 @@ REST·SOAP·MQ·SFTP·Batch 같은 외부 인터페이스를 한 화면에서 �
 `Vue 3` `TypeScript` `Vuetify` `WebSocket`
 
 **[라이브 →](https://interface-hub.chobihome.site/)**
+
+</td>
+<td width="50%" valign="top">
+
+### 📚 RAG Study Platform
+
+업로드한 문서로 학습 챗봇을 만들고, AI가 문제를 내주는 학습 플랫폼입니다. LLM 7종을 런타임에 바꿔가며 비용·속도·품질을 비교하고, Prometheus·Grafana로 호출·토큰을 실시간으로 들여다봅니다.
+
+`Vue 3` `FastAPI` `LangChain` `FAISS` `Grafana`
+
+**[저장소 →](https://github.com/PARK1217/rag-study-platform)**
 
 </td>
 </tr>
