@@ -119,7 +119,8 @@ motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만�
 
 `React` `Vite` `TypeScript` `Tailwind` `Express` `PostgreSQL` `pgvector` `Web Push` `Docker` `Jenkins`
 
-**[🌐 cat.chobihome.site](https://cat.chobihome.site)**
+**[🌐 라이브 데모 체험 → cat.chobihome.site/demo](https://cat.chobihome.site/demo)** &nbsp;<sub>클릭 한 번으로 입장</sub>
+<br /><sub>데모는 **합성(가짜) 데이터**의 '데모냥이'를 보여줍니다 — 실제 사용자·아이 정보와 완전히 격리되고, 나가면 초기화됩니다 · 직접 로그인 시 아이디 `demo@chobihome.site` · 비밀번호 `demo`</sub>
 
 <br />
 
