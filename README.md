@@ -123,6 +123,38 @@ motto:       "모를 땐 추측 대신 모른다고 답하는 시스템을 만�
 
 <br />
 
+### 📈 주식 자동매매 비서 (stock-bot) &nbsp;<sub><sup>· 집 로컬 서버 24시간 상주 · 실계좌 연동</sup></sub>
+
+> 배당 + 성장 균형을 지향하는 **"반자동" 개인 투자 비서** — 봇이 분석·예측·제안하고 **실제 매매는 사람이 승인**합니다. 미국장·한국장을 24시간 함께 보고, 어려운 건 주린이(주식 초보)도 알아듣게 풀어줍니다.
+
+💡 **왜 만들었나** — "감(感)이 아니라 근거로 투자하자". 그리고 **검증 없이 실돈을 자동으로 맡기지 않는다**는 원칙 아래, *모의계좌에서 전략을 충분히 검증(백테스트·워크포워드·24h 모의운용) → 실계좌 자동매매* 로 넘어가는 **단계적 파이프라인**을 직접 설계·운영합니다.
+
+<table>
+<tr>
+<td width="58%" valign="top">
+
+- 🏦 **멀티 브로커 추상화** — 토스(미국)·한국투자(ISA·연금) 3계좌를 `BrokerAdapter` 하나로 통합
+- 🔮 **확률 예측 + 자기채점** — 몬테카를로로 "21일 뒤 상승확률·기대수익"을 내고 만기 후 **스스로 적중 채점**
+- 📰 **뉴스 감성 분석** — FinBERT 배치 + Groq/Mistral 요약, 실제 주가 반영 여부까지
+- 🧪 **모의 자동매매 엔진** — 가상 5억으로 24시간 전략 검증 (MA50 추세 + SPY 레짐)
+- 💬 **주린이용 분석 챗봇 (RAG)** — 보유·스크리너·예측·계좌제약을 근거로 답변
+
+`Python` `FastAPI` `PostgreSQL` `Redis` `APScheduler` `FinBERT` `Groq/Mistral` `Docker` `Cloudflare Tunnel`
+
+**[🌐 라이브 데모 → stock.chobihome.site](https://stock.chobihome.site)**
+<br /><sub>🔑 데모 비밀번호 **`demo`** · 데모 계정은 **합성(가짜) 데이터**만 보여줍니다 — 실계좌는 완전히 격리됩니다</sub>
+
+</td>
+<td width="42%" valign="top">
+
+<img src="assets/stock-bot.png" width="100%" alt="stock-bot 대시보드 — 실계좌 통합 · 자산 흐름" />
+
+</td>
+</tr>
+</table>
+
+<br />
+
 <table>
 <tr>
 <td width="50%" valign="top">
