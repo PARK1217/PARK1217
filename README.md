@@ -174,15 +174,12 @@ REST·SOAP·MQ·SFTP·Batch 같은 외부 인터페이스를 한 화면에서 �
 
 <br />
 
-## GitHub
+## Contact
 
 <div align="center">
 
-<img height="160" src="https://github-readme-stats.vercel.app/api?username=PARK1217&amp;show_icons=true&amp;hide_border=true&amp;title_color=6366F1&amp;icon_color=8B5CF6&amp;text_color=808080&amp;bg_color=00000000&amp;include_all_commits=true&amp;count_private=true" />
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=PARK1217&amp;layout=compact&amp;hide_border=true&amp;title_color=6366F1&amp;text_color=808080&amp;bg_color=00000000&amp;langs_count=8" />
+궁금한 점이나 협업 제안은 언제든 편하게 연락 주세요.
 
-<br /><br />
-
-<a href="mailto:fasosan@gmail.com">fasosan@gmail.com</a>
+**[fasosan@gmail.com](mailto:fasosan@gmail.com)** &nbsp;·&nbsp; **[github.com/PARK1217](https://github.com/PARK1217)**
 
 </div>
