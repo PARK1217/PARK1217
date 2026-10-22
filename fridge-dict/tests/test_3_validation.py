@@ -42,26 +42,29 @@ def test_valid_notation_passes(html):
     assert check_measurements(html) == [], html
 
 
-# legacy 원문에 실제로 단위가 빠진 곳. 원문은 바꾸지 않고 시드 때 경고만 남긴다.
-# 고치려면 PUT으로: 부대찌개 "양파 ½" → "양파 ½개", 불린 미역 "식초 2" → "식초 2큰술"
-LEGACY_NOTATION_ISSUES = {"budae-jjigae": "양파 ½", "too-much-soaked-miyeok": "식초 2"}
-
-
 def test_legacy_measurement_check_has_no_false_positives():
-    """오탐 방지: legacy 45건 중 실제 표기 오류 2곳만 걸려야 한다."""
+    """오탐 방지: legacy 45건이 모두 통과해야 한다 (원문의 표기 오류 2곳은 extract 스크립트의 FIXES로 고쳤다)."""
     bad = {}
     for fname in ("recipes.json", "swaps.json"):
         for it in json.loads((ROOT / "data" / fname).read_text("utf-8")):
             errs = check_measurements(it["html"])
             if errs:
                 bad[it["id"]] = errs
-    assert set(bad) == set(LEGACY_NOTATION_ISSUES)
-    for item_id, needle in LEGACY_NOTATION_ISSUES.items():
-        assert len(bad[item_id]) == 1 and needle in bad[item_id][0]
+    assert bad == {}
 
 
-def test_legacy_items_pass_full_validation_except_known_tag_count():
-    """시드 데이터 전체 검증. 알려진 예외: 태그 3개인 두 건과 표기 오류 두 곳."""
+def test_fixes_applied_to_data():
+    """2026-10-22 수정 4건이 data/*.json에 반영되어 있는지."""
+    recipes = {r["id"]: r for r in json.loads((ROOT / "data/recipes.json").read_text("utf-8"))}
+    swaps = {s["id"]: s for s in json.loads((ROOT / "data/swaps.json").read_text("utf-8"))}
+    assert recipes["samgyeopsal-curry"]["tags"] == ["돼지고기", "감자"]
+    assert recipes["budae-jjigae"]["tags"] == ["가공식품", "김치"]
+    assert "양파 ½개·대파를" in recipes["budae-jjigae"]["html"]
+    assert "식초 2큰술 · 설탕 1큰술" in swaps["too-much-soaked-miyeok"]["html"]
+
+
+def test_legacy_items_pass_full_validation():
+    """시드 데이터 45건 전체가 엄격 검증(태그 2개 포함)을 통과한다."""
     recipes = json.loads((ROOT / "data/recipes.json").read_text("utf-8"))
     swaps = json.loads((ROOT / "data/swaps.json").read_text("utf-8"))
     failures = {}
@@ -73,12 +76,7 @@ def test_legacy_items_pass_full_validation_except_known_tag_count():
         errs = validate_swap(s)
         if errs:
             failures[s["id"]] = errs
-    assert set(failures) == {"samgyeopsal-curry", "budae-jjigae", "too-much-soaked-miyeok"}
-    assert failures["samgyeopsal-curry"] == [e for e in failures["samgyeopsal-curry"] if "최대 2개" in e]
-    assert any("최대 2개" in e for e in failures["budae-jjigae"]) and any("양파 ½" in e for e in failures["budae-jjigae"])
-    assert len(failures["too-much-soaked-miyeok"]) == 1 and "식초 2" in failures["too-much-soaked-miyeok"][0]
-    # 느슨한 모드(시드)에서는 태그 수만 풀리고 표기 오류는 그대로 경고로 남는다
-    assert not validate_recipe(next(r for r in recipes if r["id"] == "samgyeopsal-curry"), strict_tags=False)
+    assert failures == {}
 
 
 def test_schema_rules(recipe_payload):

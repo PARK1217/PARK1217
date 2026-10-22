@@ -97,14 +97,26 @@ def test_update_recipe_and_revert_from_web(client):
     assert err and "최대 2개" in text
 
 
-def test_revert_legacy_version_with_three_tags_is_allowed(client):
-    """legacy 3태그 항목을 수정했다가 되돌릴 때 태그 수 검사에 막히지 않아야 한다."""
-    r = client.put("/api/recipes/samgyeopsal-curry", json={"tags": ["돼지고기", "감자"], "gist": "임시"})
-    assert r.status_code == 200
-    upd = client.get("/api/history", params={"id": "samgyeopsal-curry"}).json()[0]
-    assert len(upd["data"]["tags"]) == 3
-    assert client.post(f"/api/history/{upd['id']}/revert").status_code == 200
-    assert client.get("/api/recipes/samgyeopsal-curry").json()["tags"] == upd["data"]["tags"]
+def test_revert_to_old_version_with_three_tags_is_allowed(client):
+    """옛 버전이 지금 규칙(태그 2개)에 안 맞아도 되돌리기는 막히지 않아야 한다."""
+    from app.db import SessionLocal
+    from app.models import History
+    from app.services import now_iso
+
+    cur = client.get("/api/recipes/samgyeopsal-curry").json()
+    old = dict(cur, tags=["돼지고기", "감자", "채소"], gist="옛 요약")
+    with SessionLocal() as s:
+        h = History(kind="recipe", item_id="samgyeopsal-curry", action="update", data=old, source="web", user_email="", changed_at=now_iso())
+        s.add(h)
+        s.commit()
+        hid = h.id
+    assert client.post(f"/api/history/{hid}/revert").status_code == 200
+    got = client.get("/api/recipes/samgyeopsal-curry").json()
+    assert got["tags"] == ["돼지고기", "감자", "채소"] and got["gist"] == "옛 요약"
+    # 되돌린 뒤 다시 현재 버전으로
+    back = client.get("/api/history", params={"id": "samgyeopsal-curry"}).json()[0]
+    assert client.post(f"/api/history/{back['id']}/revert").status_code == 200
+    assert client.get("/api/recipes/samgyeopsal-curry").json()["tags"] == cur["tags"]
 
 
 def test_swap_tools_and_log_meal(client):

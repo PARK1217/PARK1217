@@ -1,5 +1,5 @@
 // legacy/kitchen-index.html 안의 RECIPES / SWAPS 배열을 Node vm으로 평가해 data/*.json을 만든다.
-// html 문자열은 평가 결과 그대로이므로 브라우저가 보던 값과 글자 단위로 같다.
+// html 문자열은 평가 결과 그대로이므로 브라우저가 보던 값과 글자 단위로 같다 (FIXES에 적은 4곳만 예외).
 // 사용: node scripts/extract_legacy.mjs            → data/recipes.json, data/swaps.json 생성
 //       node scripts/extract_legacy.mjs --check    → 기존 파일과 비교만 (다르면 exit 1)
 import fs from "node:fs";
@@ -64,6 +64,26 @@ const MAP = {
   },
 };
 
+// legacy 원문의 표기 오류 수정 (2026-10-22 사용자 요청). legacy 파일은 그대로 두고 여기서 고친다.
+//  - 태그는 주재료만 최대 2개: 삼겹살 카레의 '채소'(양파·당근은 곁들임), 부대찌개의 '면'(라면사리는 마지막 사리)을 뺀다.
+//  - 계량은 숫자+단위: 부대찌개 '양파 ½' → '양파 ½개', 불린 미역 '식초 2' → '식초 2큰술'.
+const FIXES = {
+  "samgyeopsal-curry": { tags: ["돼지고기", "감자"] },
+  "budae-jjigae": { tags: ["가공식품", "김치"], html: [["두부 반 모·양파 ½·대파를", "두부 반 모·양파 ½개·대파를"]] },
+  "too-much-soaked-miyeok": { html: [["오이미역냉국 — 식초 2 · 설탕 1큰술", "오이미역냉국 — 식초 2큰술 · 설탕 1큰술"]] },
+};
+function applyFixes(item) {
+  const f = FIXES[item.id];
+  if (!f) return item;
+  if (f.tags) item.tags = f.tags;
+  for (const [from, to] of f.html || []) {
+    const n = item.html.split(from).length - 1;
+    if (n !== 1) throw new Error(`${item.id}: 수정 대상 "${from}"이 ${n}번 나타남 (정확히 1번이어야 함)`);
+    item.html = item.html.replace(from, to);
+  }
+  return item;
+}
+
 function evalArrays() {
   const src = fs.readFileSync(LEGACY, "utf8");
   const a = src.indexOf("const RECIPES = [");
@@ -95,7 +115,7 @@ function convert(kind, rows) {
       Object.assign(base, { tools: r.tools || [], time: r.time || "" });
     }
     Object.assign(base, { added: r.added, gist: r.gist, html: r.html });
-    return base;
+    return applyFixes(base);
   });
   const unused = Object.keys(map).filter((n) => !rows.some((r) => r.name === n));
   if (unused.length) throw new Error(`${kind}: legacy에 없는 매핑 ${unused.join(", ")}`);
