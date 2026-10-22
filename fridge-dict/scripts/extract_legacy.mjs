@@ -72,6 +72,15 @@ const FIXES = {
   "budae-jjigae": { tags: ["가공식품", "김치"], html: [["두부 반 모·양파 ½·대파를", "두부 반 모·양파 ½개·대파를"]] },
   "too-much-soaked-miyeok": { html: [["오이미역냉국 — 식초 2 · 설탕 1큰술", "오이미역냉국 — 식초 2큰술 · 설탕 1큰술"]] },
 };
+// 매운 정도 (2026-10-22 추가 필드). 본문을 읽고 판단한 초기값이며 웹·MCP로 고칠 수 있다.
+const SPICY = {
+  "spam-kimchi-jjigae": "매움", "rabokki": "매움", "tteokbokki-jeongol": "매움", "chicken-skewer-yakitori-tare": "안 매움",
+  "zikoba-spicy-sauce": "매움", "satae-miyeokguk": "안 매움", "samgyeopsal-curry": "조절 가능", "spicy-sundubu-jjigae": "매움",
+  "chodang-sundubu": "안 매움", "sundubu-gyeranjjim": "안 매움", "ttukbaegi-gyeranjjim": "안 매움", "microwave-gyeranjjim": "안 매움",
+  "margarine-potato-roast": "안 매움", "homemade-potato-chips": "안 매움", "croquette-gratin": "안 매움", "budae-jjigae": "조절 가능",
+  "jwipo-grill": "안 매움", "samchi-fillet-airfryer": "안 매움", "red-crab-uses": "안 매움", "frozen-sundae": "조절 가능",
+  "yeondubu-soft": "안 매움", "ramen-sari-uses": "조절 가능", "neobiani-odor-fix": "안 매움", "naengmyeon-broth-thin-noodle": "안 매움",
+};
 function applyFixes(item) {
   const f = FIXES[item.id];
   if (!f) return item;
@@ -111,6 +120,7 @@ function convert(kind, rows) {
         easy: !!r.easy, base: r.base || "",
       });
       if (r.anchor) base.anchor = { n: r.anchor.n, a: r.anchor.a, u: r.anchor.u };
+      base.spicy = SPICY[id] || "";
     } else {
       Object.assign(base, { tools: r.tools || [], time: r.time || "" });
     }

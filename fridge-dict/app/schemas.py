@@ -22,6 +22,7 @@ class RecipeIn(BaseModel):
     easy: bool = False
     base: str = ""
     anchor: Anchor | None = None
+    spicy: str = ""
     added: str
     gist: str
     html: str
@@ -38,6 +39,7 @@ class RecipePatch(BaseModel):
     easy: bool | None = None
     base: str | None = None
     anchor: Anchor | None = None
+    spicy: str | None = None
     added: str | None = None
     gist: str | None = None
     html: str | None = None
@@ -71,12 +73,14 @@ class SwapPatch(BaseModel):
 class StateOut(BaseModel):
     favs: list[str]
     scale: float
+    stock: list[str]
 
 
 class StatePut(BaseModel):
     model_config = ConfigDict(extra="forbid")
     favs: list[str] | None = None
     scale: float | None = Field(default=None, gt=0, le=10)
+    stock: list[str] | None = None
 
 
 class LogIn(BaseModel):
@@ -84,6 +88,7 @@ class LogIn(BaseModel):
     date: str
     name: str
     comp: list[str] = Field(default_factory=list)
+    recipe_id: str | None = None
 
 
 class LogOut(BaseModel):
@@ -91,6 +96,62 @@ class LogOut(BaseModel):
     date: str
     name: str
     comp: list[str]
+    recipe_id: str | None = None
+
+
+class IdeaIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    name: str
+    note: str = ""
+    kind: str = "recipe"
+
+
+class IdeaPatch(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    name: str | None = None
+    note: str | None = None
+    kind: str | None = None
+    done: bool | None = None
+
+
+class IdeaOut(BaseModel):
+    id: int
+    kind: str
+    name: str
+    note: str
+    source: str
+    created_at: str
+    done_at: str | None
+
+
+class NoteIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    kind: str
+    item_id: str
+    text: str
+
+
+class NoteOut(BaseModel):
+    id: int
+    kind: str
+    item_id: str
+    text: str
+    user_email: str
+    created_at: str
+
+
+class PlanIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    date: str
+    name: str
+    recipe_id: str | None = None
+
+
+class PlanOut(BaseModel):
+    id: int
+    date: str
+    name: str
+    recipe_id: str | None
 
 
 class HistoryOut(BaseModel):

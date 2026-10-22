@@ -19,4 +19,4 @@ def get_state(s: DB, user: CurrentUser):
 
 @router.put("", response_model=StateOut)
 def put_state(body: StatePut, s: DB, user: CurrentUser):
-    return services.put_state(s, user, favs=body.favs, scale=body.scale)
+    return services.put_state(s, user, favs=body.favs, scale=body.scale, stock=body.stock)

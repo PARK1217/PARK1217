@@ -5,12 +5,12 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from .config import LEGACY_DIR, MCP_ENABLED, MCP_SECRET, STATIC_DIR
+from .config import LEGACY_DIR, MCP_ENABLED, MCP_SECRET, PHOTO_DIR, POT_LIMIT_ML, STATIC_DIR
 from .db import SessionLocal, init_db
-from .routers import items, log, state
+from .routers import extras, items, log, state
 from .seed import seed
 from .services import Conflict, NotFound
-from .validation import ANCHOR_UNITS, CATEGORY_ORDER, COMPS, TAG_ORDER, ValidationError
+from .validation import ANCHOR_UNITS, CATEGORY_ORDER, COMPS, SPICY, TAG_ORDER, ValidationError
 
 
 # MCP(claude.ai 커스텀 커넥터): MCP_SECRET이 있을 때만 /mcp/<secret> 에 붙는다.
@@ -60,6 +60,10 @@ app.include_router(items.swaps)
 app.include_router(items.history)
 app.include_router(state.router)
 app.include_router(log.router)
+app.include_router(extras.ideas)
+app.include_router(extras.notes)
+app.include_router(extras.plan)
+app.include_router(extras.export)
 
 
 @app.get("/api/health")
@@ -70,7 +74,12 @@ def health():
 @app.get("/api/meta")
 def meta():
     """프런트가 칩·분류 순서를 하드코딩하지 않도록 허용값을 내려준다 (validation.py가 단일 출처)."""
-    return {"tags": TAG_ORDER, "categories": CATEGORY_ORDER, "comps": COMPS, "anchor_units": list(ANCHOR_UNITS), "mcp": MCP_ENABLED}
+    return {"tags": TAG_ORDER, "categories": CATEGORY_ORDER, "comps": COMPS, "spicy": SPICY,
+            "anchor_units": list(ANCHOR_UNITS), "pot_limit_ml": POT_LIMIT_ML, "mcp": MCP_ENABLED}
+
+
+PHOTO_DIR.mkdir(parents=True, exist_ok=True)
+app.mount("/photos", StaticFiles(directory=PHOTO_DIR), name="photos")
 
 
 if _mcp_http is not None:

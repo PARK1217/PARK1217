@@ -15,7 +15,7 @@ from . import services
 from .config import APP_DOMAIN
 from .db import SessionLocal
 from .schemas import RecipeIn, RecipePatch, SwapIn, SwapPatch
-from .validation import CATEGORY_ORDER, COMPS, TAG_ORDER, ValidationError
+from .validation import CATEGORY_ORDER, COMPS, SPICY, TAG_ORDER, ValidationError
 
 MCP_USER = "claude.ai"  # 로그인 없는 비밀 URL 방식이라 사람은 구분하지 않는다. 이력에는 source=mcp로 남는다.
 
@@ -36,6 +36,7 @@ RULES = f"""냉장고 사전 — 부부 두 사람이 주방에서 폰으로 보
 - comp: {' · '.join(COMPS)} 중에서 그 요리가 한 끼에서 실제로 맡는 역할만. 고명은 세지 않고, 양념 전용 항목은 빈 배열.
 - easy: 15분 안에 상에 올라가고 핏물 빼기·불리기·오래 삶기 같은 기다리는 손질이 없고, 집에 상시 있는 재료로 될 때만 true. 국물 요리는 20분까지 허용. 양념만 만드는 항목은 false.
 - base: 원래 레시피 기준 분량 그대로 (예: "2인분"). 화면이 1.5배로 환산해 보여주므로 늘려 적지 않습니다.
+- spicy: {' · '.join(SPICY)} 중 하나, 모르면 비움. 한 사람이 매운 걸 덜 먹어서 '덜 맵게' 필터에 쓴다.
 - anchor: 사람들이 "이만큼 사왔는데"로 시작하는 주재료. {{"n": "캔 스팸", "a": 200, "u": "g"}} 형태, u는 g·ml·개·장. 없으면 생략.
 - tools: 기구 목록 (냄비·팬·큐커·에어프라이어·오븐·전자레인지·뚝배기·찜기·무조리 등). time: "45분"처럼 표시용 문자열. added: YYYY-MM-DD.
 - html: 본문. <h3>·<ol>/<ul>·<b>·<p> 와 요령 상자 <div class="key">, 없을 때 상자 <div class="swap"><h3>없을 때</h3><ul>…</ul></div> 만 씁니다.
@@ -47,6 +48,9 @@ RULES = f"""냉장고 사전 — 부부 두 사람이 주방에서 폰으로 보
 
 ## 집 주방 기구 (레시피 쓸 때 참고)
 인덕션(흙 뚝배기 불가), 삼성 큐커(상단 히터가 강하고 왼쪽이 더 셈, 트레이는 최상단 한 칸, 얇은 건 중간에 뒤집고 온도는 한 단계 낮게), 빌트인 컨벡션 오븐, 에어프라이어, 전자레인지. 냄비는 2L가 최대.
+
+## 아직 안 해본 것
+해보지 않은 아이디어는 add_recipe가 아니라 add_idea(해볼 것)에 넣습니다. 해본 뒤 레시피로 옮깁니다.
 
 삭제 도구는 없습니다. 삭제와 되돌리기는 웹 화면에서 사람이 합니다. 모든 추가·수정은 이력에 남습니다."""
 
@@ -143,6 +147,21 @@ def build_server() -> MCPServer:
             except ValidationError as ex:
                 raise _fail(ex)
             return {"ok": True, "entry": e}
+
+    # ── 해볼 것 ─────────────────────────────────────────────────────────
+    @mcp.tool(description="해볼 것 목록(아직 안 해본 아이디어). 레시피로 넣기 전 단계. 완료된 것도 뒤에 붙어 옵니다.")
+    def list_ideas() -> list[dict]:
+        with SessionLocal() as s:
+            return services.list_ideas(s)
+
+    @mcp.tool(description="해볼 것 추가. 실제로 안 해본 요리·요령은 add_recipe 대신 여기에. name은 요리 이름, note는 왜 끌리는지·출처·핵심 요령 한두 줄. kind는 recipe(기본) 또는 swap.")
+    def add_idea(name: str, note: str = "", kind: str = "recipe") -> dict:
+        with SessionLocal() as s:
+            try:
+                d = services.add_idea(s, name, note, kind, source="mcp")
+            except ValidationError as e:
+                raise _fail(e)
+            return {"ok": True, "idea": d, "message": "해볼 것에 넣었습니다. 해본 뒤 웹에서 '레시피로 옮기기'를 누르거나 add_recipe로 넣으세요."}
 
     return mcp
 

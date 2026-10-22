@@ -26,7 +26,7 @@ curl -s localhost:8080/api/health     # {"ok":true}
 docker compose logs --tail 20         # [seed] recipe: 파일 24건, 새로 24건 … 이 보이면 시드 완료
 ```
 
-- SQLite는 `/opt/fridge-dict/db/fridge.db`에 생긴다(볼륨). 이 폴더가 백업 대상이다.
+- SQLite는 `/opt/fridge-dict/db/fridge.db`에 생긴다(볼륨). 레시피 사진은 같은 볼륨의 `db/photos/`에 들어간다. 이 폴더가 백업 대상이다.
 - 레시피를 `data/*.json`에 추가한 뒤 `docker compose up -d --build`하면 **없는 id만** 새로 들어간다. 이미 있는 항목은 파일을 바꿔도 DB를 덮어쓰지 않는다(수정은 API로).
 - 업데이트: `git pull && docker compose up -d --build`. DB는 볼륨이라 그대로다.
 

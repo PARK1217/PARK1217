@@ -1,7 +1,7 @@
 """레시피와 대체·보관은 같은 모양이라 라우터 하나를 kind별로 두 번 만든다."""
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Response, status
+from fastapi import APIRouter, Depends, File, Response, UploadFile, status
 from sqlalchemy.orm import Session
 
 from .. import services
@@ -34,6 +34,24 @@ def make_router(kind: str) -> APIRouter:
     def update(item_id: str, body: Patch, s: DB, user: CurrentUser):  # type: ignore[valid-type]
         patch = body.model_dump(exclude_unset=True)
         return services.update_item(s, kind, item_id, patch, source="web", user=user)
+
+    @r.delete("/{item_id}", status_code=status.HTTP_204_NO_CONTENT)
+    def delete(item_id: str, s: DB, user: CurrentUser):
+        """삭제는 웹 화면에서 사람이 한다. 삭제 전 버전이 이력에 남아 되돌릴 수 있다."""
+        services.delete_item(s, kind, item_id, source="web", user=user)
+        return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+    if kind == "recipe":
+        @r.post("/{item_id}/photo")
+        async def upload_photo(item_id: str, s: DB, file: UploadFile = File(...)):
+            data = await file.read()
+            url = services.save_photo(s, item_id, data)
+            return {"photo": url}
+
+        @r.delete("/{item_id}/photo", status_code=status.HTTP_204_NO_CONTENT)
+        def remove_photo(item_id: str):
+            services.delete_photo(item_id)
+            return Response(status_code=status.HTTP_204_NO_CONTENT)
 
     return r
 

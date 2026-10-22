@@ -65,16 +65,19 @@ def test_swap_crud(client):
 
 
 def test_state_favs_per_user_scale_shared(client):
-    assert client.get("/api/state", headers=USER_A).json() == {"favs": [], "scale": 1.5}
+    assert client.get("/api/state", headers=USER_A).json() == {"favs": [], "scale": 1.5, "stock": []}
     r = client.put("/api/state", headers=USER_A, json={"favs": ["rabokki", "budae-jjigae", "no-such-id"], "scale": 2})
-    assert r.json() == {"favs": ["budae-jjigae", "rabokki"], "scale": 2.0}
+    assert r.json() == {"favs": ["budae-jjigae", "rabokki"], "scale": 2.0, "stock": []}
     # B는 즐겨찾기가 따로, 배율은 공용
-    assert client.get("/api/state", headers=USER_B).json() == {"favs": [], "scale": 2.0}
+    assert client.get("/api/state", headers=USER_B).json() == {"favs": [], "scale": 2.0, "stock": []}
     client.put("/api/state", headers=USER_B, json={"favs": ["rabokki"]})
     assert client.get("/api/state", headers=USER_A).json()["favs"] == ["budae-jjigae", "rabokki"]
     # favs만 바꾸면 scale은 그대로
     client.put("/api/state", headers=USER_A, json={"favs": []})
-    assert client.get("/api/state", headers=USER_A).json() == {"favs": [], "scale": 2.0}
+    assert client.get("/api/state", headers=USER_A).json() == {"favs": [], "scale": 2.0, "stock": []}
+    # 냉장고 재고(가구 공용): 허용 태그만 남는다
+    client.put("/api/state", headers=USER_A, json={"stock": ["달걀", "두부", "없는태그", "달걀"]})
+    assert client.get("/api/state", headers=USER_B).json()["stock"] == ["달걀", "두부"]
     # 헤더 없으면 DEV_USER_EMAIL
     assert client.get("/api/state").json()["favs"] == []
     assert client.put("/api/state", json={"scale": 0}).status_code == 422

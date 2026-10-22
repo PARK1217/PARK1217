@@ -8,6 +8,10 @@ PORT = int(os.getenv("PORT", "8080"))
 APP_DOMAIN = os.getenv("APP_DOMAIN", "")
 DB_PATH = Path(os.getenv("DB_PATH", str(ROOT / "db" / "fridge.db")))
 DATA_DIR = Path(os.getenv("DATA_DIR", str(ROOT / "data")))
+# 레시피 사진. 기본은 DB 파일 옆 photos/ (같은 볼륨이라 같이 백업된다)
+PHOTO_DIR = Path(os.getenv("PHOTO_DIR", str(DB_PATH.parent / "photos")))
+PHOTO_MAX_BYTES = 6 * 1024 * 1024
+POT_LIMIT_ML = int(os.getenv("POT_LIMIT_ML", "2000"))  # 집 냄비 최대 용량
 STATIC_DIR = ROOT / "static"
 LEGACY_DIR = ROOT / "legacy"
 

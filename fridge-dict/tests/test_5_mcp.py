@@ -39,7 +39,7 @@ def test_initialize_and_tool_list(client):
     assert res["serverInfo"]["name"] == "냉장고 사전"
     assert "계량" in res.get("instructions", "")
     tools = {t["name"]: t for t in rpc(client, "tools/list")["tools"]}
-    assert set(tools) == {"list_recipes", "get_recipe", "add_recipe", "update_recipe", "list_swaps", "get_swap", "add_swap", "update_swap", "log_meal"}
+    assert set(tools) == {"list_recipes", "get_recipe", "add_recipe", "update_recipe", "list_swaps", "get_swap", "add_swap", "update_swap", "log_meal", "list_ideas", "add_idea"}
     assert "숫자+단위" in tools["add_recipe"]["description"]
     assert "recipe" in tools["add_recipe"]["inputSchema"]["properties"]
 
@@ -135,3 +135,12 @@ def test_swap_tools_and_log_meal(client):
     assert any(e["name"] == "MCP 저녁" for e in client.get("/api/log?days=1").json())
     err, text, _ = call(client, "log_meal", {"name": "x", "comp": ["비타민"]})
     assert err and "comp" in text
+
+
+def test_idea_tools(client):
+    err, text, data = call(client, "add_idea", {"name": "오야코동", "note": "닭꼬치 타레 재사용"})
+    assert not err and data["ok"] and data["idea"]["source"] == "mcp"
+    err, _, data = call(client, "list_ideas", {})
+    assert any(i["name"] == "오야코동" for i in data["result"])
+    err, text, _ = call(client, "add_idea", {"name": "  ", "note": ""})
+    assert err and "name" in text

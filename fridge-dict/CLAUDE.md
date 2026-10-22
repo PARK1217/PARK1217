@@ -7,17 +7,22 @@
 
 - **디자인 정체성은 legacy 페이지를 따른다.** 폰트(Gowun Batang + IBM Plex Sans KR), 색 토큰, 다크 모드, 모바일 우선. 레이아웃과 구성 요소는 legacy보다 다듬어도 된다(2026-10-22 사용자 요청: "UI·UX와 레이아웃을 예쁘게"). 새 기능은 기존 톤에 맞춘다.
 - 기능 목록 — 하나라도 빠지면 회귀다:
-  - 탭: 레시피 / 대체·보관 / 식단
-  - **분류(category) 선택** → 그 안에서 재료 칩 필터(여러 개 = AND), 검색(본문 텍스트 포함)
-  - 모드: 전체 / 즐겨찾기 / 최근 추가 / 간단
+  - 탭: 레시피 / 대체·보관 / 식단 / 해볼 것
+  - **분류(category) 선택** → 그 안에서 재료 칩 필터(여러 개 = AND), 검색(본문 텍스트 포함, **초성 검색**)
+  - 모드: 전체 / 즐겨찾기 / 최근 추가 / 간단 / 덜 맵게 / 오랜만에 / 냉장고(있는 재료로 만들 수 있는 것)
   - 즐겨찾기(★) — 위로 정렬
   - 분량 배율 버튼(기준·1.5·2·3배), **기본값 1.5배**
   - 레시피별 주재료 입력칸 → 나머지 계량 비례 환산
   - 본문의 "N분/N초" 표기를 누르면 타이머 시작, 하단 바, 최대 3개 동시, 소리+진동
   - 오늘의 간단 요리 카드(날짜 기반, '다른 거')
   - 식단 탭: 단백질·채소·탄수화물·발효 4칸, 오늘 기록, 빠진 구성 추천, 지난 14일
-  - 페이지 하단 "이 페이지를 늘려가는 규칙"
-  - 페이지 하단 "최근 변경 이력" → 항목별 되돌리기(웹·MCP로 들어온 변경 모두)
+  - 레시피 본문: 사진 한 장, 조리 모드(화면 꺼짐 방지·단계 체크·큰 글씨), 냄비 용량 경고, 단위 도움말, 메모, 편집·삭제·"오늘 먹었어요"
+  - 카드에 매운 정도 배지와 "N주 전"(마지막으로 먹은 날)
+  - 식단 탭: 이번 주 계획(요일별 배정, 먹었어요), 장보기(계획한 요리의 주재료 중 냉장고에 없는 것)
+  - 해볼 것 탭: 아직 안 해본 아이디어. 해본 뒤 "레시피로 옮기기"로 편집 시트 → 사전 등록
+  - 타이머: 알림 권한을 켜면 화면이 꺼져도 서비스워커 알림으로 울림
+  - 페이지 하단 "이 페이지를 늘려가는 규칙", 데이터 내보내기(JSON)
+  - 페이지 하단 "최근 변경 이력" → 항목별 되돌리기(웹·MCP로 들어온 변경 모두, 삭제 복구 포함)
 - 환산 제외: 온도, 시간, 크기(cm), `.key` 요령 상자 안의 숫자.
 
 ## 바뀌는 것 — 서버로 옮기는 이유
@@ -42,7 +47,7 @@
 
 ```
 app/            FastAPI. validation.py·services.py는 REST와 MCP가 공유한다
-static/         index.html (프런트 한 파일)
+static/         index.html (프런트 한 파일) + sw.js (타이머 알림·홈 화면 추가용, 캐시 없음)
 legacy/         아티팩트 원본. 비교 기준이며 수정하지 않는다 (/legacy/ 경로로 같이 서빙)
 data/           recipes.json, swaps.json — scripts/extract_legacy.mjs가 legacy에서 생성
 scripts/        추출 스크립트
@@ -66,6 +71,7 @@ deploy/         배포 설정과 순서 (앱이 로컬에서 다 돌아간 뒤)
   "easy": false,
   "base": "2인분",
   "anchor": { "n": "캔 스팸", "a": 200, "u": "g" },
+  "spicy": "매움",
   "added": "2026-10-14",
   "gist": "성패를 가르는 한 가지를 한 줄로.",
   "html": "<h3>...</h3><ol><li>...</li></ol><div class=\"key\">...</div><div class=\"swap\">...</div>"
@@ -80,6 +86,8 @@ deploy/         배포 설정과 순서 (앱이 로컬에서 다 돌아간 뒤)
 - `comp`: `단백질·채소·탄수화물·발효` 중에서, **그 요리가 한 끼에서 실제로 맡는 역할만.** 고명은 세지 않는다. 양념 전용 항목은 빈 배열.
 - `easy`: 아래 '간단' 기준을 만족할 때만 true.
 - `anchor`: 사람들이 "이만큼 사왔는데"로 시작하는 재료. 단위는 `g·ml·개·장`. 없을 수 있다(쥐포 굽기, 홍게 활용).
+- `spicy`: `안 매움 · 조절 가능 · 매움` 중 하나, 모르면 빈 문자열. 한 사람이 매운 걸 덜 먹어서 '덜 맵게' 필터에 쓴다. legacy 24건은 `extract_legacy.mjs`의 `SPICY`에서 초기값을 줬다.
+- 사진은 데이터 파일이 아니라 `PHOTO_DIR`(기본 DB 옆 `photos/`)에 `<id>.jpg`로 둔다. API 응답에는 파일이 있을 때만 `photo` 필드가 붙는다.
 - `html` 본문의 계량은 **반드시 `숫자+단위`** (`2큰술`, `150ml`, `½작은술`). `고추장 2 · 간장 1` 처럼 단위를 빼면 환산이 안 된다. `전분 1 : 물 2큰술` 같은 비율 표기는 허용.
 - 대체·보관 항목(`data/swaps.json`)은 같은 형태에서 `comp/easy/base/anchor` 없음.
 
@@ -127,14 +135,21 @@ GET    /api/swaps              대체·보관 전체
 GET    /api/swaps/{id}
 POST   /api/swaps
 PUT    /api/swaps/{id}
-GET    /api/state              { favs: [id...], scale }
-PUT    /api/state              { favs?, scale? }
 GET    /api/log?days=14        식단 기록 (오늘 포함 최근 N일)
-POST   /api/log                {date, name, comp[]} → 201
+POST   /api/log                {date, name, comp[], recipe_id?} → 201
 DELETE /api/log/{entry_id}     → 204
+DELETE /api/recipes/{id}       삭제 (이력 action=delete, 되돌리기로 복구) · /api/swaps/{id} 동일
+POST   /api/recipes/{id}/photo 사진 올리기 (multipart, JPEG·PNG·WebP ≤ 6MB) · DELETE 로 지우기
+GET    /api/state              { favs: [id...], scale, stock: [태그...] }   stock = 냉장고에 있는 주재료(가구 공용)
+PUT    /api/state              { favs?, scale?, stock? }
+GET    /api/log/last           { recipe_id: 마지막으로 먹은 날 }
 GET    /api/history?kind=&id=  변경 이력
 POST   /api/history/{id}/revert 그 이력에 저장된 버전으로 되돌리기 (되돌리기도 이력으로 남음)
-GET    /api/meta               허용 태그·분류·구성, mcp 켜짐 여부
+GET/POST /api/ideas · PUT/DELETE /api/ideas/{id}      해볼 것 {name, note, kind, done}
+GET /api/notes?kind=&id= · POST /api/notes · DELETE /api/notes/{id}   메모 {kind, item_id, text}
+GET /api/plan?start=&end= · POST /api/plan · DELETE /api/plan/{id}   주간 계획 {date, name, recipe_id?}
+GET    /api/export             전체 데이터 JSON (백업)
+GET    /api/meta               허용 태그·분류·구성·spicy, 냄비 용량(POT_LIMIT_ML), mcp 켜짐 여부
 POST   /mcp/<MCP_SECRET>       MCP Streamable HTTP (2단계)
 ```
 
@@ -151,6 +166,10 @@ POST   /mcp/<MCP_SECRET>       MCP Streamable HTTP (2단계)
 - 저장소: `PARK1217/fridge-dict`를 만들 권한이 세션에 없어, 생성 전까지 `PARK1217/PARK1217`의 작업 브랜치 `fridge-dict/` 하위 폴더에서 개발한다. 새 저장소가 생기면 폴더 이력을 옮긴다. (2026-10-22 사용자: 2단계까지 이 브랜치에서 계속)
 - **MCP 인증(2026-10-22 사용자 결정): 비밀 URL + 로그인 없음.** 조사 결과 claude.ai 커스텀 커넥터가 기본 지원하는 인증은 OAuth(DCR/CIMD)뿐이고, 요청 헤더(API 키) 방식은 베타라 일부 조직만 쓸 수 있다. OAuth 서버를 앱에 넣는 안을 권했으나 사용자가 비밀 URL을 택했다. 아래 '2단계'의 "인증 없이 열어두기 금지"는 이 결정으로 대체하되, 보완책을 둔다: `MCP_SECRET` 32자 이상 강제, 앱 접근 로그 끔, Cloudflare Access Bypass를 Anthropic 발신 대역 `160.79.104.0/21`로 제한(deploy/README.md 6절).
 
+## 3단계 (2026-10-22, "다 진행해"): docs/IDEAS.md의 기능 13개를 모두 구현
+
+해볼 것 탭·편집 시트·조리 모드(Wake Lock)·타이머 알림(서비스워커)·냉장고 모드·마지막으로 먹은 날·메모·덜 맵게·초성 검색·단위 도움말·냄비 용량 경고(가장 큰 액체 양 × 배율 > 2L)·내보내기·사진·주간 계획과 장보기. 레시피 후보는 규칙대로 사전에 넣지 않고 '해볼 것'에 두는 구조로 흡수했다. 테이블 `ideas·notes·plan`, `recipes.spicy`, `meal_log.recipe_id` 추가(기존 DB는 `init_db`가 컬럼을 보정). 프런트는 여전히 `static/index.html` 한 파일 + `sw.js`.
+
 ## 2단계: MCP 엔드포인트 (앱과 배포가 끝난 뒤)
 
 목적: claude.ai 대화에서 Claude가 레시피를 직접 넣고 고칠 수 있게 한다. 앱을 claude.ai **커스텀 커넥터**로 등록해서, 대화 중 "사전에 넣어줘"가 곧 DB 반영이 되게.
@@ -162,12 +181,13 @@ POST   /mcp/<MCP_SECRET>       MCP Streamable HTTP (2단계)
   - `add_recipe(recipe)` / `update_recipe(id, patch)`
   - `list_swaps()` / `get_swap(id)` / `add_swap(swap)` / `update_swap(id, patch)`
   - `log_meal(date, name, comp[])`
+  - `list_ideas()` / `add_idea(name, note, kind)` — 안 해본 아이디어는 레시피가 아니라 여기로
   - 삭제 도구는 만들지 않는다. 삭제는 웹 화면에서 사람이 한다.
 - 도구 description(한국어)에 CLAUDE.md의 **콘텐츠 규칙 요약**을 넣는다 — 실제로 해본 것만, 밀키트는 swap에, comp 기준, '간단' 기준, 계량은 숫자+단위. 어느 대화의 Claude든 이 설명만 보고 규칙대로 넣을 수 있어야 한다.
 - 검증 실패 시 무엇이 왜 틀렸는지 문장으로 돌려준다(Claude가 고쳐서 재시도할 수 있게).
 - **변경 이력**: add/update마다 이전 버전을 `history` 테이블에 남기고, 웹 화면에서 되돌리기 가능하게. `source`(web/mcp) 기록.
 - **인증**: (결정 기록 참고) `/mcp/<MCP_SECRET>` 비밀 경로, 커넥터는 "No sign-in"으로 등록. Access에서는 `fridge.chobihome.com/mcp/*`만 Bypass하되 Anthropic 발신 IP 대역으로 제한한다. 비밀이 새면 `MCP_SECRET`을 바꾸고 커넥터 URL을 수정한다.
-- **구현 상태**: `app/mcp_server.py`. 도구 9개, 무상태 Streamable HTTP + JSON 응답, 서버 instructions에 콘텐츠 규칙 요약. 검증·CRUD는 REST와 같은 `services`·`validation`을 쓴다. 되돌리기는 `POST /api/history/{id}/revert`와 웹 하단 '최근 변경 이력'.
+- **구현 상태**: `app/mcp_server.py`. 도구 11개, 무상태 Streamable HTTP + JSON 응답, 서버 instructions에 콘텐츠 규칙 요약. 검증·CRUD는 REST와 같은 `services`·`validation`을 쓴다. 되돌리기는 `POST /api/history/{id}/revert`와 웹 하단 '최근 변경 이력'.
 - 완료 기준: claude.ai에서 커넥터를 연결한 대화가 `list_recipes`로 목록을 읽고, 테스트 레시피를 `add_recipe`로 넣고, 웹 화면에 바로 보이고, 이력에서 되돌릴 수 있을 것.
 
 ## 작업 방식

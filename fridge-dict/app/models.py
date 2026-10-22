@@ -20,6 +20,7 @@ class Recipe(Base):
     easy: Mapped[bool] = mapped_column(Boolean, default=False)
     base: Mapped[str] = mapped_column(String(80), default="")
     anchor: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    spicy: Mapped[str] = mapped_column(String(10), default="")  # "" | 안 매움 | 조절 가능 | 매움
     added: Mapped[str] = mapped_column(String(10))
     gist: Mapped[str] = mapped_column(Text)
     html: Mapped[str] = mapped_column(Text)
@@ -63,6 +64,40 @@ class MealLog(Base):
     date: Mapped[str] = mapped_column(String(10), index=True)  # YYYY-MM-DD
     name: Mapped[str] = mapped_column(String(200))
     comp: Mapped[list] = mapped_column(JSON)
+    recipe_id: Mapped[str | None] = mapped_column(String(80), nullable=True)  # 사전에서 고른 경우
+    created_at: Mapped[str] = mapped_column(String(32))
+
+
+class Idea(Base):
+    """해볼 것. 규칙상 레시피에 못 넣는 아이디어를 두는 곳. 해본 뒤 레시피로 옮긴다."""
+    __tablename__ = "ideas"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    kind: Mapped[str] = mapped_column(String(8), default="recipe")  # recipe | swap
+    name: Mapped[str] = mapped_column(String(200))
+    note: Mapped[str] = mapped_column(Text, default="")
+    source: Mapped[str] = mapped_column(String(16), default="web")
+    created_at: Mapped[str] = mapped_column(String(32))
+    done_at: Mapped[str | None] = mapped_column(String(32), nullable=True)
+
+
+class Note(Base):
+    """레시피·대체 항목에 붙는 메모 (해보고 느낀 점). 가구 공용."""
+    __tablename__ = "notes"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    kind: Mapped[str] = mapped_column(String(8))
+    item_id: Mapped[str] = mapped_column(String(80), index=True)
+    text: Mapped[str] = mapped_column(Text)
+    user_email: Mapped[str] = mapped_column(String(200), default="")
+    created_at: Mapped[str] = mapped_column(String(32))
+
+
+class Plan(Base):
+    """주간 식단 계획. 날짜에 요리를 배정한다."""
+    __tablename__ = "plan"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    date: Mapped[str] = mapped_column(String(10), index=True)
+    recipe_id: Mapped[str | None] = mapped_column(String(80), nullable=True)
+    name: Mapped[str] = mapped_column(String(200))
     created_at: Mapped[str] = mapped_column(String(32))
 
 

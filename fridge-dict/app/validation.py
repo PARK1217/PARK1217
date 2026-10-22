@@ -18,6 +18,7 @@ CATEGORY_ORDER: dict[str, list[str]] = {
     "swap": ["재료 대체", "손질·보관", "도구·요령"],
 }
 COMPS = ["단백질", "채소", "탄수화물", "발효"]
+SPICY = ["안 매움", "조절 가능", "매움"]  # 비우면 '모름'. 매운 걸 덜 먹는 사람을 위한 필터용
 ANCHOR_UNITS = ("g", "ml", "개", "장")
 MAX_TAGS = 2
 KINDS = ("recipe", "swap")
@@ -117,6 +118,9 @@ def validate_recipe(d: dict, *, strict_tags: bool = True) -> list[str]:
             e.append("comp에 같은 값이 두 번 있습니다.")
     if not isinstance(d.get("easy", False), bool):
         e.append("easy는 true/false여야 합니다.")
+    sp = d.get("spicy", "") or ""
+    if sp not in SPICY and sp != "":
+        e.append(f"spicy '{sp}'는 허용값이 아닙니다. {' · '.join(SPICY)} 중 하나이거나 비워 둡니다.")
     anc = d.get("anchor")
     if anc is not None:
         if not isinstance(anc, dict):
