@@ -235,6 +235,16 @@ footer ul{padding-left:1.2em;margin:0}
 footer li{margin-bottom:6px;line-height:1.65}
 footer code{font-size:12.5px;background:var(--field);padding:1px 5px;border-radius:4px}
 .note{margin:14px 0 0;line-height:1.7}
+.hlist{list-style:none;margin:6px 0 0;padding:0}
+.hlist li{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:10px 0;border-bottom:1px solid var(--rule-soft);font-size:13.5px;color:var(--ink)}
+.hlist li:last-child{border-bottom:0}
+.hlist .hwhen{color:var(--mute);font-variant-numeric:tabular-nums;min-width:76px}
+.hlist .hwhat{flex:1;min-width:12em}
+.hlist .hwhat small{color:var(--mute)}
+.hlist .hsrc{font-size:11px;padding:2px 7px;border-radius:999px;background:var(--field);color:var(--mute)}
+.hlist .hsrc.mcp{background:var(--amber-soft);color:var(--amber)}
+.hlist .undo{appearance:none;font:inherit;font-size:12.5px;padding:5px 10px;cursor:pointer;background:transparent;color:var(--mute);border:1px solid var(--rule);border-radius:999px;white-space:nowrap}
+.hlist .undo:hover{border-color:var(--ink);color:var(--ink)}
 
 /* ── 타이머 ── */
 .t{appearance:none;font:inherit;font-size:inherit;cursor:pointer;background:var(--amber-soft);color:var(--amber);font-weight:600;
@@ -397,8 +407,12 @@ body.has-timer .toast{bottom:calc(200px + env(safe-area-inset-bottom,0px))}
       <li>그 전에라도 찾기 불편해지면 그때 고칩니다. 항목 수보다 불편이 먼저입니다.</li>
     </ul>
 
-    <h3>새 대화에서 추가할 때</h3>
-    <p class="note">대화창이 바뀌면 이 페이지의 내용을 모릅니다. <b>이 페이지 링크를 붙여서</b> “여기에 추가해줘”라고 하면 현재 내용을 읽어와 같은 주소로 덮어씁니다. 주소는 바뀌지 않습니다.</p>
+    <h3>claude.ai에서 바로 넣을 때</h3>
+    <p class="note">claude.ai 설정의 <b>커넥터</b>에 이 사전을 커스텀 커넥터로 연결해 두면, 대화에서 “사전에 넣어줘”라고 할 때 Claude가 위 규칙에 맞춰 바로 등록합니다. 들어온 항목은 아래 ‘최근 변경 이력’에서 확인하고 되돌릴 수 있습니다.</p>
+  </details>
+  <details class="hist" id="histBox">
+    <summary>최근 변경 이력</summary>
+    <ul class="hlist" id="hlist"></ul>
   </details>
 </footer>
 </div>
@@ -1038,6 +1052,44 @@ async function migrateLocal(){
     toast("이 브라우저에 있던 기록을 서버로 옮겼습니다"+(n?" (식단 "+n+"건)":""),4000);
   }catch(e){toast("기존 기록을 옮기지 못했습니다: "+e.message,4000);}
 }
+
+/* ── 변경 이력 · 되돌리기 ── */
+async function reloadData(){
+  const [r,sw]=await Promise.all([api("GET","/api/recipes"),api("GET","/api/swaps")]);
+  RECIPES=r;SWAPS=sw;EASY=RECIPES.filter(x=>x.easy);
+  document.getElementById("addPick").innerHTML="";
+  if(view!=="diet"){buildCats();buildChips();buildList();render();}
+  else paintDiet();
+}
+function fmtWhen(iso){
+  const d=new Date(iso);
+  if(isNaN(d))return iso;
+  return (d.getMonth()+1)+"."+d.getDate()+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
+}
+async function loadHistory(){
+  const ul=document.getElementById("hlist");
+  ul.innerHTML='<li class="dempty">불러오는 중…</li>';
+  try{
+    const rows=await api("GET","/api/history?limit=30");
+    if(!rows.length){ul.innerHTML='<li class="dempty">아직 변경이 없습니다. 시드로 들어온 항목은 이력에 남지 않습니다.</li>';return;}
+    ul.innerHTML="";
+    rows.forEach(h=>{
+      const name=(h.data&&h.data.name)||h.item_id;
+      const li=document.createElement("li");
+      li.innerHTML='<span class="hwhen">'+esc(fmtWhen(h.changed_at))+'</span>'+
+        '<span class="hwhat">'+(h.action==="create"?"추가":"수정")+' · '+esc(name)+(h.kind==="swap"?' <small>대체·보관</small>':'')+'</span>'+
+        '<span class="hsrc '+esc(h.source)+'">'+esc(h.source==="mcp"?"claude.ai":h.source==="web"?"웹":h.source)+'</span>'+
+        '<button class="undo" type="button">'+(h.action==="create"?"처음 버전으로":"수정 전으로")+'</button>';
+      li.querySelector(".undo").addEventListener("click",async()=>{
+        if(!confirm("‘"+name+"’을(를) 이 버전으로 되돌릴까요? 지금 내용도 이력에 남습니다."))return;
+        try{await api("POST","/api/history/"+h.id+"/revert");await reloadData();toast("되돌렸습니다");loadHistory();}
+        catch(err){toast("되돌리지 못했습니다: "+err.message,4000);}
+      });
+      ul.appendChild(li);
+    });
+  }catch(e){ul.innerHTML='<li class="dempty">'+esc(e.message)+'</li>';}
+}
+document.getElementById("histBox").addEventListener("toggle",e=>{if(e.target.open)loadHistory();});
 
 /* ── 시작 ── */
 async function boot(){

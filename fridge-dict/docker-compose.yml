@@ -11,6 +11,7 @@ services:
       APP_DOMAIN: ${APP_DOMAIN:-}
       TZ: ${TZ:-Asia/Seoul}
       DB_PATH: /data/fridge.db
+      MCP_SECRET: ${MCP_SECRET:-}
     volumes:
       # SQLite 파일. 이 폴더만 백업하면 된다 (fridge.db, fridge.db-wal, fridge.db-shm)
       - ./db:/data

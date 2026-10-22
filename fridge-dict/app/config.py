@@ -16,3 +16,10 @@ USER_HEADER = "Cf-Access-Authenticated-User-Email"
 DEV_USER_EMAIL = os.getenv("DEV_USER_EMAIL", "local@dev")
 
 DEFAULT_SCALE = 1.5
+
+# MCP 엔드포인트는 /mcp/<MCP_SECRET> 에 붙는다. 비어 있거나 짧으면 MCP를 켜지 않는다.
+# 생성: python -c "import secrets; print(secrets.token_urlsafe(32))"
+MCP_SECRET = os.getenv("MCP_SECRET", "").strip()
+MCP_MIN_SECRET_LEN = 32
+MCP_ENABLED = len(MCP_SECRET) >= MCP_MIN_SECRET_LEN and MCP_SECRET.replace("-", "").replace("_", "").isalnum()
+MCP_PATH = f"/mcp/{MCP_SECRET}" if MCP_ENABLED else ""

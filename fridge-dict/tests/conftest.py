@@ -14,6 +14,7 @@ shutil.rmtree(_tmp, ignore_errors=True)
 _tmp.mkdir(parents=True)
 os.environ["DB_PATH"] = str(_tmp / "test.db")
 os.environ["DEV_USER_EMAIL"] = "tester@dev"
+os.environ["MCP_SECRET"] = "test-secret-0123456789abcdefghijklmnopqrstuvwxyz"
 
 from fastapi.testclient import TestClient  # noqa: E402
 

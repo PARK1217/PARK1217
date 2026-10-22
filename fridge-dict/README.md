@@ -40,4 +40,6 @@ deploy/     LXC · Docker · Cloudflare Tunnel · Access
 1. `data/recipes.json`에 항목을 넣고 재시작하면 없는 id만 DB에 들어간다. 또는
 2. `POST /api/recipes`로 보낸다. 단위 없는 계량(`고추장 2 · 간장 1`)은 400으로 거절되고 이유가 돌아온다.
 
-규칙은 CLAUDE.md의 '콘텐츠 규칙'을 따른다.
+3. claude.ai 커스텀 커넥터(MCP)로 대화 중 바로 넣는다. `MCP_SECRET`을 두면 `/mcp/<secret>`에 켜진다. 등록 방법은 deploy/README.md 6절.
+
+규칙은 CLAUDE.md의 '콘텐츠 규칙'을 따른다. 웹과 MCP로 들어온 변경은 하단 '최근 변경 이력'에서 되돌릴 수 있다.

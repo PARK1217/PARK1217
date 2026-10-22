@@ -17,6 +17,7 @@
   - 오늘의 간단 요리 카드(날짜 기반, '다른 거')
   - 식단 탭: 단백질·채소·탄수화물·발효 4칸, 오늘 기록, 빠진 구성 추천, 지난 14일
   - 페이지 하단 "이 페이지를 늘려가는 규칙"
+  - 페이지 하단 "최근 변경 이력" → 항목별 되돌리기(웹·MCP로 들어온 변경 모두)
 - 환산 제외: 온도, 시간, 크기(cm), `.key` 요령 상자 안의 숫자.
 
 ## 바뀌는 것 — 서버로 옮기는 이유
@@ -131,7 +132,10 @@ PUT    /api/state              { favs?, scale? }
 GET    /api/log?days=14        식단 기록 (오늘 포함 최근 N일)
 POST   /api/log                {date, name, comp[]} → 201
 DELETE /api/log/{entry_id}     → 204
-GET    /api/history?kind=&id=  변경 이력 (되돌리기 UI는 2단계)
+GET    /api/history?kind=&id=  변경 이력
+POST   /api/history/{id}/revert 그 이력에 저장된 버전으로 되돌리기 (되돌리기도 이력으로 남음)
+GET    /api/meta               허용 태그·분류·구성, mcp 켜짐 여부
+POST   /mcp/<MCP_SECRET>       MCP Streamable HTTP (2단계)
 ```
 
 - `POST/PUT` 시 검증 실패는 400 + `{"detail": "...", "errors": ["문장", ...]}`. 계량 표기 검사: 본문에 단위 없는 숫자 나열이 있으면 어느 항목이 왜 틀렸는지 문장으로 돌려준다.
@@ -143,7 +147,8 @@ GET    /api/history?kind=&id=  변경 이력 (되돌리기 UI는 2단계)
 - 태그 2개 제한은 POST/PUT에서만 강제. 시드는 legacy 원문 그대로 넣고 경고만 남긴다(삼겹살 카레·부대찌개가 3개).
 - 첫 접속 때 브라우저 localStorage의 즐겨찾기·배율·식단 기록이 있고 서버가 비어 있으면 한 번 올리고 로컬 키를 지운다. 즐겨찾기는 이름→id로 변환.
 - 푸터의 "새 대화에서 추가할 때" 문단은 아티팩트 시절 안내라 틀리지만, MCP가 붙는 2단계에서 함께 고친다.
-- 저장소: `PARK1217/fridge-dict`를 만들 권한이 세션에 없어, 생성 전까지 `PARK1217/PARK1217`의 작업 브랜치 `fridge-dict/` 하위 폴더에서 개발한다. 새 저장소가 생기면 폴더 이력을 옮긴다.
+- 저장소: `PARK1217/fridge-dict`를 만들 권한이 세션에 없어, 생성 전까지 `PARK1217/PARK1217`의 작업 브랜치 `fridge-dict/` 하위 폴더에서 개발한다. 새 저장소가 생기면 폴더 이력을 옮긴다. (2026-10-22 사용자: 2단계까지 이 브랜치에서 계속)
+- **MCP 인증(2026-10-22 사용자 결정): 비밀 URL + 로그인 없음.** 조사 결과 claude.ai 커스텀 커넥터가 기본 지원하는 인증은 OAuth(DCR/CIMD)뿐이고, 요청 헤더(API 키) 방식은 베타라 일부 조직만 쓸 수 있다. OAuth 서버를 앱에 넣는 안을 권했으나 사용자가 비밀 URL을 택했다. 아래 '2단계'의 "인증 없이 열어두기 금지"는 이 결정으로 대체하되, 보완책을 둔다: `MCP_SECRET` 32자 이상 강제, 앱 접근 로그 끔, Cloudflare Access Bypass를 Anthropic 발신 대역 `160.79.104.0/21`로 제한(deploy/README.md 6절).
 
 ## 2단계: MCP 엔드포인트 (앱과 배포가 끝난 뒤)
 
@@ -160,7 +165,8 @@ GET    /api/history?kind=&id=  변경 이력 (되돌리기 UI는 2단계)
 - 도구 description(한국어)에 CLAUDE.md의 **콘텐츠 규칙 요약**을 넣는다 — 실제로 해본 것만, 밀키트는 swap에, comp 기준, '간단' 기준, 계량은 숫자+단위. 어느 대화의 Claude든 이 설명만 보고 규칙대로 넣을 수 있어야 한다.
 - 검증 실패 시 무엇이 왜 틀렸는지 문장으로 돌려준다(Claude가 고쳐서 재시도할 수 있게).
 - **변경 이력**: add/update마다 이전 버전을 `history` 테이블에 남기고, 웹 화면에서 되돌리기 가능하게. `source`(web/mcp) 기록.
-- **인증**: `/mcp`만 Cloudflare Access 정책에서 bypass하고, 대신 claude.ai 커스텀 커넥터가 지원하는 방식(OAuth 등)으로 보호한다. **구현 전에 claude.ai 커스텀 커넥터의 현재 인증 요건을 문서로 확인**하고, 방법을 정리해 승인받은 뒤 진행. `/mcp`를 인증 없이 열어두는 건 금지.
+- **인증**: (결정 기록 참고) `/mcp/<MCP_SECRET>` 비밀 경로, 커넥터는 "No sign-in"으로 등록. Access에서는 `fridge.chobihome.com/mcp/*`만 Bypass하되 Anthropic 발신 IP 대역으로 제한한다. 비밀이 새면 `MCP_SECRET`을 바꾸고 커넥터 URL을 수정한다.
+- **구현 상태**: `app/mcp_server.py`. 도구 9개, 무상태 Streamable HTTP + JSON 응답, 서버 instructions에 콘텐츠 규칙 요약. 검증·CRUD는 REST와 같은 `services`·`validation`을 쓴다. 되돌리기는 `POST /api/history/{id}/revert`와 웹 하단 '최근 변경 이력'.
 - 완료 기준: claude.ai에서 커넥터를 연결한 대화가 `list_recipes`로 목록을 읽고, 테스트 레시피를 `add_recipe`로 넣고, 웹 화면에 바로 보이고, 이력에서 되돌릴 수 있을 것.
 
 ## 작업 방식

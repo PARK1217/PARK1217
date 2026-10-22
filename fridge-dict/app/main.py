@@ -5,7 +5,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from .config import LEGACY_DIR, STATIC_DIR
+from .config import LEGACY_DIR, MCP_ENABLED, MCP_SECRET, STATIC_DIR
 from .db import SessionLocal, init_db
 from .routers import items, log, state
 from .seed import seed
@@ -13,12 +13,28 @@ from .services import Conflict, NotFound
 from .validation import ANCHOR_UNITS, CATEGORY_ORDER, COMPS, TAG_ORDER, ValidationError
 
 
+# MCP(claude.ai 커스텀 커넥터): MCP_SECRET이 있을 때만 /mcp/<secret> 에 붙는다.
+_mcp = None
+_mcp_http = None
+if MCP_ENABLED:
+    from .mcp_server import build_http_app
+
+    _mcp, _mcp_http = build_http_app(f"/{MCP_SECRET}")
+
+
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     init_db()
     with SessionLocal() as s:
         seed(s)
-    yield
+    if _mcp is not None:
+        # 마운트된 서브앱의 lifespan은 돌지 않으므로 세션 매니저를 여기서 연다
+        async with _mcp.session_manager.run():
+            print("[mcp] 켜짐: /mcp/<secret> (경로는 로그에 남기지 않음)")
+            yield
+    else:
+        print("[mcp] 꺼짐: MCP_SECRET이 없거나 32자 미만")
+        yield
 
 
 app = FastAPI(title="냉장고 사전", lifespan=lifespan, docs_url="/api/docs", redoc_url=None, openapi_url="/api/openapi.json")
@@ -54,7 +70,11 @@ def health():
 @app.get("/api/meta")
 def meta():
     """프런트가 칩·분류 순서를 하드코딩하지 않도록 허용값을 내려준다 (validation.py가 단일 출처)."""
-    return {"tags": TAG_ORDER, "categories": CATEGORY_ORDER, "comps": COMPS, "anchor_units": list(ANCHOR_UNITS)}
+    return {"tags": TAG_ORDER, "categories": CATEGORY_ORDER, "comps": COMPS, "anchor_units": list(ANCHOR_UNITS), "mcp": MCP_ENABLED}
+
+
+if _mcp_http is not None:
+    app.mount("/mcp", _mcp_http, name="mcp")
 
 
 # legacy 원본을 /legacy/ 에 같이 띄워 나란히 비교할 수 있게 한다.

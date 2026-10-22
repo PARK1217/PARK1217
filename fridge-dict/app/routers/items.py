@@ -49,4 +49,10 @@ def list_history(s: DB, kind: str | None = None, id: str | None = None, limit: i
     return services.list_history(s, kind, id, min(max(limit, 1), 200))
 
 
+@history.post("/{history_id}/revert")
+def revert(history_id: int, s: DB, user: CurrentUser):
+    """이력에 남은 버전으로 되돌린다. 웹 화면의 '되돌리기' 버튼이 부른다."""
+    return services.revert_history(s, history_id, source="web", user=user)
+
+
 _ = Response  # noqa: F841 (명시적 import 유지)

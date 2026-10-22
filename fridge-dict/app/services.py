@@ -45,6 +45,21 @@ def list_items(s: Session, kind: str) -> list[dict]:
     return [to_dict(kind, r) for r in s.scalars(select(m).order_by(m.seq))]
 
 
+def search_items(s: Session, kind: str, query: str = "", tag: str = "") -> list[dict]:
+    """MCP 목록용. 이름·요약·본문에 query가 들어가고, tag가 있으면 그 태그를 가진 것만. id·name·tags·gist만 돌려준다."""
+    q = (query or "").strip().lower()
+    out = []
+    for d in list_items(s, kind):
+        if tag and tag not in d["tags"]:
+            continue
+        if q:
+            hay = (d["name"] + " " + d["gist"] + " " + " ".join(d["tags"]) + " " + d.get("category", "") + " " + d["html"]).lower()
+            if q not in hay:
+                continue
+        out.append({"id": d["id"], "name": d["name"], "category": d.get("category"), "tags": d["tags"], "gist": d["gist"]})
+    return out
+
+
 def get_item(s: Session, kind: str, item_id: str) -> dict:
     row = s.get(MODEL[kind], item_id)
     if row is None:
@@ -76,7 +91,7 @@ def create_item(s: Session, kind: str, data: dict, *, source: str, user: str = "
     return to_dict(kind, row)
 
 
-def update_item(s: Session, kind: str, item_id: str, patch: dict, *, source: str, user: str = "") -> dict:
+def update_item(s: Session, kind: str, item_id: str, patch: dict, *, source: str, user: str = "", strict_tags: bool = True) -> dict:
     assert kind in KINDS
     m = MODEL[kind]
     row = s.get(m, item_id)
@@ -86,7 +101,7 @@ def update_item(s: Session, kind: str, item_id: str, patch: dict, *, source: str
     merged = dict(before)
     merged.update({k: v for k, v in patch.items() if k != "id"})
     merged["id"] = item_id
-    errors = validate(kind, merged)
+    errors = validate(kind, merged, strict_tags=strict_tags)
     if errors:
         raise ValidationError(errors)
     for f in FIELDS[kind]:
@@ -110,6 +125,19 @@ def list_history(s: Session, kind: str | None = None, item_id: str | None = None
          "source": h.source, "user_email": h.user_email, "changed_at": h.changed_at}
         for h in s.scalars(q)
     ]
+
+
+def revert_history(s: Session, history_id: int, *, source: str, user: str = "") -> dict:
+    """이력 항목에 저장된 버전으로 되돌린다. 되돌리기 자체도 새 이력(update)으로 남는다.
+    옛 버전이 지금 규칙(태그 2개)에 안 맞아도 되돌릴 수 있게 태그 수 검사만 푼다."""
+    h = s.get(History, history_id)
+    if h is None:
+        raise NotFound(f"이력 {history_id}가 없습니다.")
+    data = dict(h.data or {})
+    patch = {k: v for k, v in data.items() if k != "id"}
+    if h.kind == "recipe" and "anchor" not in data:
+        patch["anchor"] = None
+    return update_item(s, h.kind, h.item_id, patch, source=source, user=user, strict_tags=False)
 
 
 # ── 상태: 즐겨찾기(사람별) + 배율(가구 공용) ───────────────────────────────────
