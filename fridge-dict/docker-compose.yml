@@ -1,0 +1,16 @@
+# 로컬·LXC 공용. `.env`(HOST_PORT, APP_DOMAIN, TZ)를 같은 폴더에 두면 자동으로 읽는다.
+services:
+  fridge-dict:
+    build: .
+    image: fridge-dict:latest
+    container_name: fridge-dict
+    restart: unless-stopped
+    ports:
+      - "${HOST_PORT:-8080}:8080"
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN:-}
+      TZ: ${TZ:-Asia/Seoul}
+      DB_PATH: /data/fridge.db
+    volumes:
+      # SQLite 파일. 이 폴더만 백업하면 된다 (fridge.db, fridge.db-wal, fridge.db-shm)
+      - ./db:/data

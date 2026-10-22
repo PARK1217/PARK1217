@@ -1,0 +1,17 @@
+.git
+.gitignore
+.env
+.env.example
+db/
+*.db
+*.db-wal
+*.db-shm
+__pycache__/
+*.pyc
+.pytest_cache/
+tests/
+scripts/
+deploy/
+node_modules/
+README.md
+CLAUDE.md

@@ -10,7 +10,7 @@ from .db import SessionLocal, init_db
 from .routers import items, log, state
 from .seed import seed
 from .services import Conflict, NotFound
-from .validation import ValidationError
+from .validation import ANCHOR_UNITS, CATEGORY_ORDER, COMPS, TAG_ORDER, ValidationError
 
 
 @asynccontextmanager
@@ -49,6 +49,12 @@ app.include_router(log.router)
 @app.get("/api/health")
 def health():
     return {"ok": True}
+
+
+@app.get("/api/meta")
+def meta():
+    """프런트가 칩·분류 순서를 하드코딩하지 않도록 허용값을 내려준다 (validation.py가 단일 출처)."""
+    return {"tags": TAG_ORDER, "categories": CATEGORY_ORDER, "comps": COMPS, "anchor_units": list(ANCHOR_UNITS)}
 
 
 # legacy 원본을 /legacy/ 에 같이 띄워 나란히 비교할 수 있게 한다.

@@ -35,7 +35,7 @@ _UNITLESS_RE = re.compile(
     r"(?<![\w.~/:%-])(" + _NUM + r")(?=\s*(?:[·,+)]|\.(?:\s|$)|$))",
     re.MULTILINE,
 )
-_PREV_WORD_RE = re.compile(r"([가-힣A-Za-z·]+)\s*$")
+_PREV_WORD_RE = re.compile(r"([가-힣A-Za-z]+)\s*$")
 
 
 def strip_tags(html: str) -> str:
