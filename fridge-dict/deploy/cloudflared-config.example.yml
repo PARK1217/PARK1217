@@ -1,0 +1,12 @@
+# 설정 파일로 관리하는 cloudflared(기존 터널)에 붙일 ingress 예시.
+# 대시보드에서 관리하는 원격 터널이면 이 파일 대신 Public Hostname 화면에서 추가한다.
+tunnel: <터널 ID>
+credentials-file: /etc/cloudflared/<터널 ID>.json
+
+ingress:
+  - hostname: fridge.chobihome.com
+    service: http://<LXC IP>:8080
+    originRequest:
+      noTLSVerify: true
+  # ... 기존 호스트명들 ...
+  - service: http_status:404

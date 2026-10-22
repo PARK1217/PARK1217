@@ -1,0 +1,17 @@
+# cloudflared 사이드카 오버라이드.
+#   docker compose -f docker-compose.yml -f deploy/docker-compose.tunnel.yml up -d
+# .env 에 TUNNEL_TOKEN 이 있어야 한다 (Zero Trust → Tunnels → Create a tunnel).
+services:
+  fridge-dict:
+    ports: !override
+      - "127.0.0.1:${HOST_PORT:-8080}:8080"   # 터널 말고는 못 들어오게 loopback에만 묶는다
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: fridge-dict-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN:?TUNNEL_TOKEN을 .env에 넣으세요}
+    depends_on:
+      - fridge-dict
