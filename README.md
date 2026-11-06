@@ -93,7 +93,7 @@
 
 `FastAPI` `Next.js 14` `PostgreSQL` `Kafka` `XGBoost` `IsolationForest` `Phoenix`
 
-**[데모 사이트 →](https://daon.chobihome.site)**
+**[데모 사이트 →](https://daon.chozip.com)**
 
 <br />
 
@@ -105,7 +105,7 @@
 
 `Python` `FastAPI` `PostgreSQL` `Redis` `APScheduler` `FinBERT` `Groq/Mistral` `Docker`
 
-**[라이브 데모 → stock.chobihome.site/demo](https://stock.chobihome.site/demo)**
+**[라이브 데모 → stock.chozip.com/demo](https://stock.chozip.com/demo)**
 <br /><sub>데모는 합성 데이터만 보여줍니다 — 실계좌·자산과 완전히 격리됩니다. 직접 로그인 비밀번호: `demo`</sub>
 
 <br />
@@ -118,7 +118,7 @@
 
 `React` `TypeScript` `Express` `PostgreSQL` `pgvector` `Web Push` `Docker` `Jenkins`
 
-**[라이브 데모 → cat.chobihome.site/demo](https://cat.chobihome.site/demo)**
+**[라이브 데모 → cat.chozip.com/demo](https://cat.chozip.com/demo)**
 <br /><sub>데모는 합성 데이터의 '데모냥이'만 보여줍니다 — 실제 사용자·아이 정보와 격리되고 나가면 초기화됩니다. 직접 로그인: `demo@chobihome.site` / `demo`</sub>
 
 <br />
@@ -133,7 +133,7 @@ REST·SOAP·MQ·SFTP·Batch 같은 외부 인터페이스를 한 화면에서 �
 
 `Vue 3` `TypeScript` `Vuetify` `WebSocket`
 
-**[라이브 →](https://interface-hub.chobihome.site/)**
+**[라이브 →](https://interface-hub.chozip.com/)**
 
 </td>
 <td width="50%" valign="top">
